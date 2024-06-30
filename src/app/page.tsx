@@ -5,92 +5,30 @@ import Navbar from '../components/Navbar';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <header className="bg-blue-600 text-white">
-        <div className="container mx-auto px-6 py-16 text-center">
-          <h1 className="text-4xl font-bold mb-4">
-            Manage Your Tasks Efficiently with Our New SaaS Solution
+      <div className="min-h-screen flex">
+        {/* Left section */}
+        <div className="flex-1 flex flex-col justify-center bg-white p-10">
+          <h1 className="text-6xl font-bold text-gray-800 mb-4">
+            Making Gradients Great Again
           </h1>
-          <p className="text-xl mb-8">
-            Our task management software helps you stay organized and productive.
+          <p className="text-lg text-gray-600 mb-8">
+            Hand crafting unique world most beautiful gradients for your personal as well as commercial projects.
+            For a low cost of zero dollars and
           </p>
           <Link href="/auth/signin">
-            <button className="bg-white text-blue-600 py-3 px-6 rounded-full font-semibold">
+            <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
               Get Started
             </button>
           </Link>
         </div>
-      </header>
-
-      {/* Features Section */}
-      <section id="features" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Features</h2>
-          <div className="flex flex-wrap">
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Task Tracking</h3>
-                <p>Keep track of your tasks and stay on top of your workload with ease.</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Collaboration</h3>
-                <p>Collaborate with your team and manage projects efficiently.</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Reports & Analytics</h3>
-                <p>Generate reports and analyze your progress with our built-in tools.</p>
-              </div>
-            </div>
-          </div>
+        {/* Right section */}
+        <div className="flex-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
+          <div className="text-white text-6xl font-bold">G</div>
         </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="bg-gray-200 py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
-          <div className="flex flex-wrap">
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <p className="mb-4">"This software has transformed the way I manage my tasks. Highly recommended!"</p>
-                <p className="font-semibold">- John Doe</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <p className="mb-4">"Excellent tool for collaboration. Our team has never been more productive."</p>
-                <p className="font-semibold">- Jane Smith</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <p className="mb-4">"The reporting features are fantastic. I can easily see where we need to improve."</p>
-                <p className="font-semibold">- Michael Brown</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section id="cta" className="py-20 bg-blue-600 text-white text-center">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-xl mb-8">Sign up now and start managing your tasks more efficiently!</p>
-          <Link href="/auth/signin">
-            <button className="bg-white text-blue-600 py-3 px-6 rounded-full font-semibold">
-              Sign Up Now
-            </button>
-          </Link>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
