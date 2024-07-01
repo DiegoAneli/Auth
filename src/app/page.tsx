@@ -20,12 +20,20 @@ export default function Home() {
           <p className="text-md text-gray-600 mb-8">
             You4Task è il tuo nuovo alleato nella gestione dei progetti. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui tuoi obiettivi. Che tu lavori da solo o in team, You4Task è la soluzione perfetta per ottimizzare il tuo tempo e migliorare l'efficienza.
           </p>
-          <Link href="/auth/signin">
-            <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
-              Inizia Ora
-            </button>
-          </Link>
+          <div className="flex space-x-4">
+            <Link href="/auth/signin">
+              <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
+                Registrati
+              </button>
+            </Link>
+            <Link href="/api/auth/signin?csrf=true">
+              <button className="bg-gradient-to-r from-blue-400 via-green-500 to-teal-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
+                Accedi
+              </button>
+            </Link>
+          </div>
         </div>
+        
         {/* Right section */}
         <div className="flex-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
           <div className="text-white text-6xl font-bold"></div>
@@ -110,7 +118,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-4">Inizia Ora Gratuitamente e Scopri Come Possiamo Trasformare la Tua Produttività!</h2>
           <p className="text-xl mb-8">Iscriviti Subito e Gestisci i Tuoi Task con Facilità!</p>
-          <Link href="/auth/signin">
+          <Link href="/api/auth/signin?csrf=true">
             <button className="bg-white text-blue-600 py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition duration-300">
               Inizia Ora
             </button>

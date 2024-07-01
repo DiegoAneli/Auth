@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaSignInAlt } from 'react-icons/fa';
+import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 
 const Navbar = () => {
   return (
@@ -17,8 +17,11 @@ const Navbar = () => {
           <Link href="#testimonials" className="text-gray-600 hover:text-gray-800 transition duration-300">Testimonianze</Link>
           <Link href="#cta" className="text-gray-600 hover:text-gray-800 transition duration-300">Inizia Ora</Link>
         </div>
-        <div>
+        <div className="flex space-x-4">
           <Link href="/auth/signin">
+            <FaUserPlus className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
+          </Link>
+          <Link href="/api/auth/signin?csrf=true">
             <FaSignInAlt className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
           </Link>
         </div>
