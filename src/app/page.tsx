@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
 
-      <div className="min-h-screen flex">
+      <div className="min-h-screen flex flex-col md:flex-row">
         {/* Left section */}
         <div className="flex-1 flex flex-col justify-center bg-white p-10">
           <h1 className="text-6xl font-bold text-gray-800 mb-4">
