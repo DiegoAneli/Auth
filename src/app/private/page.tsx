@@ -1,30 +1,31 @@
 'use client';
 
-import { useSession, getSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useSession, signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
 
-export default function Private() {
+const PrivatePage = () => {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
-  useEffect(() => {
-    if (status === "loading") return; // Do nothing while loading
-    if (!session) router.push("/auth/signin"); // Redirect if not authenticated
-  }, [session, status, router]);
-
-  if (status === "loading") {
-    return <p>Loading...</p>;
+  if (status === 'loading') {
+    return <div>Loading...</div>;
   }
 
   if (!session) {
-    return null; // Render nothing if not authenticated
+    return <div>Access Denied</div>;
   }
 
   return (
-    <div>
-      <h1>Welcome {session.user.email}</h1>
-      <p>This is a private page.</p>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <h1 className="text-4xl font-bold mb-6">Welcome to the Private Page</h1>
+      <p className="text-xl mb-4">Hello, {session.user?.email}</p>
+      <button
+        onClick={() => signOut()}
+        className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg"
+      >
+        Sign Out
+      </button>
     </div>
   );
-}
+};
+
+export default PrivatePage;
