@@ -67,26 +67,43 @@ export default NextAuth({
   ],
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXTAUTH_SECRET!,
+
+
+
+
   callbacks: {
+
+
     async session({ session, token }) {
       console.log("Session callback called", { session, token });
       if (token && typeof token.id === 'string') {
         session.user!.id = token.id;
       }
+      console.log("Updated session:", session);
       return session;
     },
+
+
+
     async jwt({ token, user }) {
       console.log("JWT callback called", { token, user });
       if (user) {
         token.id = user.id;
       }
+      console.log("Updated token:", token);
       return token;
     },
+
+
     async redirect({ url, baseUrl }) {
-      if (url === '/auth/signin') {
-        return '/private';
+      console.log("Redirect callback called", { url, baseUrl });
+      // Reindirizza sempre alla pagina privata dopo il login
+      if (url.startsWith(baseUrl)) {
+        return `${baseUrl}/private`;
+      } else if (url.startsWith("/")) {
+        return `${baseUrl}${url}`;
       }
-      return url.startsWith(baseUrl) ? url : baseUrl;
+      return baseUrl;
     },
   },
 });

@@ -5,24 +5,30 @@ import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { FaGoogle } from 'react-icons/fa';
 
-export default function SignIn() {
+const SignIn = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    console.log('Submitting login form', form);
 
     const result = await signIn('credentials', {
       redirect: false,
       email: form.email,
       password: form.password,
+      callbackUrl: '/private'
     });
 
+    console.log('SignIn result:', result);
+
     if (result?.error) {
+      console.error('SignIn error:', result.error);
       setError(result.error);
     } else {
-      router.push('/private');
+      console.log('SignIn successful, redirecting...');
+      router.push(result?.url || '/private');
     }
   };
 
@@ -30,8 +36,13 @@ export default function SignIn() {
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="flex-1 flex flex-col items-center justify-center bg-white p-10">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Accedi</h1>
-      
-        <div className="text-center text-gray-500 mb-6"></div>
+        <button
+          onClick={() => signIn('google')}
+          className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg flex items-center justify-center mb-6 transition duration-300"
+        >
+          <FaGoogle className="mr-2" /> Accedi con Google
+        </button>
+        <div className="text-center text-gray-500 mb-6">o</div>
         {error && <p className="text-red-500 mb-6">{error}</p>}
         <form onSubmit={handleSubmit} className="w-full">
           <div className="mb-4">
@@ -69,4 +80,6 @@ export default function SignIn() {
       </div>
     </div>
   );
-}
+};
+
+export default SignIn;
