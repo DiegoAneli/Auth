@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
-import { MongoClient } from 'mongodb';
 import nodemailer from 'nodemailer';
 import clientPromise from '../../../lib/mongodb';
 
@@ -26,10 +25,12 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
   }
 
   const client = await clientPromise;
-  const db = client.db('your-database-name');
+  const db = client.db('Users_form_registration');
   const usersCollection = db.collection('users');
 
-  const existingUser = await usersCollection.findOne({ email });
+  // Ensure the email is lowercase to avoid case sensitivity issues
+  const lowercasedEmail = email.toLowerCase();
+  const existingUser = await usersCollection.findOne({ email: lowercasedEmail });
 
   if (existingUser) {
     return res.status(400).json({ message: 'User already exists' });
@@ -39,19 +40,20 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
 
   const newUser = {
     name,
-    email,
+    email: lowercasedEmail,
     password: hashedPassword,
     createdAt: new Date(),
   };
 
-  await usersCollection.insertOne(newUser);
+  const result = await usersCollection.insertOne(newUser);
+  console.log('User registered:', result);
 
   // Invio email di benvenuto
   const mailOptions = {
     from: process.env.EMAIL_FROM,
-    to: email,
-    subject: 'Benvenuto in You4Task',
-    text: `Ciao ${name},\n\nGrazie per esserti registrato su You4Task! Siamo entusiasti di averti con noi.\n\nCordiali saluti,\nIl team di You4Task`,
+    to: lowercasedEmail,
+    subject: 'Benvenuto in TaskManager',
+    text: `Ciao ${name},\n\nGrazie per esserti registrato su TaskManager! Siamo entusiasti di averti con noi.\n\nCordiali saluti,\nIl team di TaskManager`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

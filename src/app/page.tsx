@@ -21,7 +21,7 @@ export default function Home() {
             You4Task è il tuo nuovo alleato nella gestione dei progetti. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui tuoi obiettivi. Che tu lavori da solo o in team, You4Task è la soluzione perfetta per ottimizzare il tuo tempo e migliorare l'efficienza.
           </p>
           <div className="flex space-x-4">
-            <Link href="/auth/signin">
+            <Link href="/auth/register">
               <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Registrati
               </button>
