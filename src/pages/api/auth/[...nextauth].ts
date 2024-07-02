@@ -54,6 +54,11 @@ export default NextAuth({
             console.error("User not found");
             return null;
           }
+          
+          if (!user.isVerified) {
+            console.error("User not verified");
+            return null;
+          }
 
           const isValid = await bcrypt.compare(credentials!.password, user.password);
           console.log("Password valid:", isValid);
