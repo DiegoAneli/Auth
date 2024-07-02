@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
 import nodemailer from 'nodemailer';
 import clientPromise from '../../../lib/mongodb';
+import jwt from 'jsonwebtoken';
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
@@ -43,17 +44,21 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
     email: lowercasedEmail,
     password: hashedPassword,
     createdAt: new Date(),
+    isVerified: false,
   };
 
   const result = await usersCollection.insertOne(newUser);
   console.log('User registered:', result);
 
+  const token = jwt.sign({ email: lowercasedEmail }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+  const verificationLink = `http://localhost:3000/api/auth/verify?token=${token}`;
+
   // Invio email di benvenuto
   const mailOptions = {
     from: process.env.EMAIL_FROM,
     to: lowercasedEmail,
-    subject: 'Benvenuto in TaskManager',
-    text: `Ciao ${name},\n\nGrazie per esserti registrato su TaskManager! Siamo entusiasti di averti con noi.\n\nCordiali saluti,\nIl team di TaskManager`,
+    subject: 'Benvenuto in You4Task',
+    text: `Ciao ${name},\n\nGrazie per esserti registrato su You4Task! Per favore, verifica il tuo indirizzo email cliccando sul link seguente:\n\n${verificationLink}\n\nCordiali saluti,\nIl team di You4Task`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -64,5 +69,5 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
     }
   });
 
-  res.status(201).json({ message: 'User registered successfully', user: newUser });
+  res.status(201).json({ message: 'User registered successfully. Please check your email to verify your account.', user: newUser });
 }
