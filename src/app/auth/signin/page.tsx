@@ -36,13 +36,8 @@ const SignIn = () => {
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="flex-1 flex flex-col items-center justify-center bg-white p-10">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Accedi</h1>
-        <button
-          onClick={() => signIn('google')}
-          className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg flex items-center justify-center mb-6 transition duration-300"
-        >
-          <FaGoogle className="mr-2" /> Accedi con Google
-        </button>
-        <div className="text-center text-gray-500 mb-6">o</div>
+        
+        
         {error && <p className="text-red-500 mb-6">{error}</p>}
         <form onSubmit={handleSubmit} className="w-full">
           <div className="mb-4">
@@ -69,9 +64,16 @@ const SignIn = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg transition duration-300"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg transition duration-300 mb-5"
           >
             Accedi
+          </button>
+
+          <button
+            onClick={() => signIn('google')}
+            className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg flex items-center justify-center mb-6 transition duration-300"
+          >
+            <FaGoogle className="mr-2" /> Accedi con Google
           </button>
         </form>
       </div>

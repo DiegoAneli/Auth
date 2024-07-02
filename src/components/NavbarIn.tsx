@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FaSignInAlt, FaUserPlus, FaBars, FaTimes } from 'react-icons/fa';
 
-const Navbar = () => {
+const NavbarIn = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,15 +20,13 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex space-x-6">
-          <Link href="#features" className="text-gray-600 hover:text-gray-800 transition duration-300">Caratteristiche</Link>
-          <Link href="#testimonials" className="text-gray-600 hover:text-gray-800 transition duration-300">Testimonianze</Link>
-          <Link href="#cta" className="text-gray-600 hover:text-gray-800 transition duration-300">Inizia Ora</Link>
+          <Link href="#features" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
+          <Link href="#testimonials" className="text-gray-600 hover:text-gray-800 transition duration-300">Report</Link>
+          <Link href="#cta" className="text-gray-600 hover:text-gray-800 transition duration-300">Account</Link>
         </div>
         <div className="hidden md:flex space-x-4">
-          <Link href="/auth/register">
-            <FaUserPlus className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
-          </Link>
-          <Link href="/api/auth/signin">
+          
+          <Link href="/api/auth/signout">
             <FaSignInAlt className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
           </Link>
         </div>
@@ -55,4 +53,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarIn;

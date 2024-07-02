@@ -73,47 +73,11 @@ export default NextAuth({
   ],
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXTAUTH_SECRET!,
+  
   session: {
     strategy: 'jwt',  // Usa JWT per le sessioni
   },
 
-
-
-  /*callbacks: {
-
-
-    async session({ session, token }) {
-      console.log("Session callback called", { session, token });
-      if (token && typeof token.id === 'string') {
-        session.user!.id = token.id;
-      }
-      console.log("Updated session:", session);
-      return session;
-    },
-
-
-
-    async jwt({ token, user }) {
-      console.log("JWT callback called", { token, user });
-      if (user) {
-        token.id = user.id;
-      }
-      console.log("Updated token:", token);
-      return token;
-    },
-
-
-    async redirect({ url, baseUrl }) {
-      console.log("Redirect callback called", { url, baseUrl });
-      // Reindirizza sempre alla pagina privata dopo il login
-      if (url.startsWith(baseUrl)) {
-        return `${baseUrl}/private`;
-      } else if (url.startsWith("/")) {
-        return `${baseUrl}${url}`;
-      }
-      return baseUrl;
-    },
-  },*/
 
   callbacks: {
     async session({ session, token }: { session: any, token: any }) {
@@ -149,5 +113,6 @@ export default NextAuth({
   },
   pages: {
     signIn: '/auth/signin',
+    signOut: '/auth/signout',
   },
 });
