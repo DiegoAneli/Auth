@@ -23,12 +23,18 @@ export default NextAuth({
       },
       from: process.env.EMAIL_FROM!,
     }),
+
+
+
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
+
+
+
       async authorize(credentials) {
         console.log("authorize function called");
         console.log("credentials:", credentials);
@@ -46,7 +52,7 @@ export default NextAuth({
 
           if (!user) {
             console.error("User not found");
-            throw new Error('Invalid email or password');
+            return null;
           }
 
           const isValid = await bcrypt.compare(credentials!.password, user.password);
@@ -54,24 +60,26 @@ export default NextAuth({
 
           if (!isValid) {
             console.error("Invalid password");
-            throw new Error('Invalid email or password');
+            return null;
           }
 
           return { id: user._id.toString(), name: user.name, email: user.email };
         } catch (error) {
           console.error("Authorize error:", error);
-          throw new Error('Invalid email or password');
+          return null;
         }
       },
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXTAUTH_SECRET!,
+  session: {
+    strategy: 'jwt',  // Usa JWT per le sessioni
+  },
 
 
 
-
-  callbacks: {
+  /*callbacks: {
 
 
     async session({ session, token }) {
@@ -105,5 +113,41 @@ export default NextAuth({
       }
       return baseUrl;
     },
+  },*/
+
+  callbacks: {
+    async session({ session, token }: { session: any, token: any }) {
+      console.log("Session callback called", { session, token });
+      if (token) {
+        session.user = {
+          ...session.user,
+          id: token.id as string,
+          email: token.email,
+          name: token.name,
+        };
+      }
+      return session;
+    },
+    async jwt({ token, user }: { token: any, user?: any }) {
+      console.log("JWT callback called", { token, user });
+      if (user) {
+        token.id = user.id as string;
+        token.email = user.email;
+        token.name = user.name;
+      }
+      return token;
+    },
+    async redirect({ url, baseUrl }: { url: string, baseUrl: string }) {
+      console.log("Redirect callback called", { url, baseUrl });
+      if (url.startsWith(baseUrl)) {
+        return url;
+      } else if (url.startsWith("/")) {
+        return new URL(url, baseUrl).toString();
+      }
+      return baseUrl;
+    },
+  },
+  pages: {
+    signIn: '/auth/signin',
   },
 });
