@@ -43,10 +43,10 @@ const Navbar = () => {
           <Link href="#features" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Caratteristiche</Link>
           <Link href="#testimonials" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Testimonianze</Link>
           <Link href="#cta" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Inizia Ora</Link>
-          <Link href="/api/auth/signin?csrf=true" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link href="/api/auth/signin" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
             <FaSignInAlt className="inline mr-2" /> Accedi
           </Link>
-          <Link href="/auth/signin" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link href="/auth/register" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
             <FaUserPlus className="inline mr-2" /> Registrati
           </Link>
         </div>
