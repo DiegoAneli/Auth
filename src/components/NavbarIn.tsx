@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FaSignInAlt, FaUserPlus, FaBars, FaTimes } from 'react-icons/fa';
+import { FaSignInAlt, FaUserPlus, FaBars, FaTimes, FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { useSession } from 'next-auth/react';
 
 const NavbarIn = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -14,20 +16,29 @@ const NavbarIn = () => {
   return (
     <nav className="bg-white shadow-lg fixed w-full z-10">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-2xl font-semibold text-gray-800">
-          <Link href="/">
-            You4Task
-          </Link>
+        <div className="flex items-center">
+          <div className="text-2xl font-semibold text-gray-800 mr-4">
+            <Link href="/">
+              You4Task
+            </Link>
+          </div>
+          {session && (
+            <div className="text-gray-800">
+              Benvenuto, {session.user?.name}
+            </div>
+          )}
         </div>
         <div className="hidden md:flex space-x-6">
           <Link href="#features" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
           <Link href="#testimonials" className="text-gray-600 hover:text-gray-800 transition duration-300">Report</Link>
-          <Link href="#cta" className="text-gray-600 hover:text-gray-800 transition duration-300">Account</Link>
+          <Link href="/auth/invite" className="text-gray-600 hover:text-gray-800 transition duration-300">Invita Collaboratore</Link>
         </div>
-        <div className="hidden md:flex space-x-4">
-          
+        <div className="hidden md:flex space-x-4 items-center">
           <Link href="/api/auth/signout">
-            <FaSignInAlt className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
+            <FaSignOutAlt className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
+          </Link>
+          <Link href="/user">
+            <FaUser className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
           </Link>
         </div>
         <div className="md:hidden">
@@ -38,14 +49,16 @@ const NavbarIn = () => {
       </div>
       {isOpen && (
         <div className="md:hidden bg-white shadow-lg">
-          <Link href="#features" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Caratteristiche</Link>
-          <Link href="#testimonials" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Testimonianze</Link>
-          <Link href="#cta" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Inizia Ora</Link>
-          <Link href="/api/auth/signin?csrf=true" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
-            <FaSignInAlt className="inline mr-2" /> Accedi
+          <Link href="#features" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
+          <Link href="#testimonials" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Report</Link>
+          <Link href="/auth/invite" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+            <FaUserPlus className="inline mr-2" /> Invita Collaboratore
           </Link>
-          <Link href="/auth/signin" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
-            <FaUserPlus className="inline mr-2" /> Registrati
+          <Link href="/user" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+            <FaUser className="inline mr-2" /> Modifica Utente
+          </Link>
+          <Link href="/api/auth/signout" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+            <FaSignOutAlt className="inline mr-2" /> Esci
           </Link>
         </div>
       )}
