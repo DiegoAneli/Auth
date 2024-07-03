@@ -29,8 +29,8 @@ const NavbarIn = () => {
           )}
         </div>
         <div className="hidden md:flex space-x-6">
-          <Link href="#features" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
-          <Link href="#testimonials" className="text-gray-600 hover:text-gray-800 transition duration-300">Report</Link>
+          <Link href="/auth/dashboard" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
+          <Link href="/auth/report" className="text-gray-600 hover:text-gray-800 transition duration-300">Report</Link>
           <Link href="/auth/invite" className="text-gray-600 hover:text-gray-800 transition duration-300">Invita Collaboratore</Link>
         </div>
         <div className="hidden md:flex space-x-4 items-center">
@@ -49,8 +49,8 @@ const NavbarIn = () => {
       </div>
       {isOpen && (
         <div className="md:hidden bg-white shadow-lg">
-          <Link href="#features" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
-          <Link href="#testimonials" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Report</Link>
+          <Link href="/auth/dashboard" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
+          <Link href="/auth/report" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Report</Link>
           <Link href="/auth/invite" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
             <FaUserPlus className="inline mr-2" /> Invita Collaboratore
           </Link>

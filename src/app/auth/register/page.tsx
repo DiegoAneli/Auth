@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { signIn } from "next-auth/react";
 import { FaGoogle } from 'react-icons/fa';
-import Navbar from '@/components/Navbar'; // Assicurati che il percorso sia corretto
+import NavbarUt from '@/components/NavbarUt'; // Assicurati che il percorso sia corretto
 
 export default function SignIn() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
@@ -33,7 +33,7 @@ export default function SignIn() {
 
   return (
     <div>
-      <Navbar />
+      <NavbarUt />
       <div className="min-h-screen flex flex-col md:flex-row">
         <div className="flex-1 flex flex-col items-center justify-center bg-white p-10">
           <h1 className="text-4xl font-bold text-gray-800 mb-6">Registrazione Utente</h1>
