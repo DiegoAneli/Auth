@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react';
 import NavbarIn from '@/components/NavbarIn'; // Assicurati che il percorso sia corretto
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { 
   HomeIcon, 
   ClipboardDocumentListIcon, 
@@ -11,7 +11,9 @@ import {
   ChartPieIcon, 
   DocumentCheckIcon, 
   CurrencyDollarIcon, 
-  CalendarIcon 
+  CalendarIcon, 
+  ChevronLeftIcon, 
+  ChevronRightIcon 
 } from '@heroicons/react/24/outline';
 
 interface ReportDashboardProps {
@@ -20,6 +22,7 @@ interface ReportDashboardProps {
 
 const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
   const { data: session, status } = useSession();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   if (status === 'loading') {
     return <div>Loading...</div>;
@@ -34,50 +37,41 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
       <NavbarIn />
       <div className="flex flex-1 mt-14">
         {/* Sidebar */}
-        <div className="w-64 bg-[#1A202C] text-white p-4">
-          <h2 className="text-2xl font-bold mb-4">Report</h2>
+        <div className={`bg-[#1A202C] text-white p-4 transition-width duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
+          <div className="flex justify-between items-center mb-4">
+            {!isCollapsed && <h2 className="text-2xl font-bold">Report</h2>}
+            <button onClick={() => setIsCollapsed(!isCollapsed)} className="text-white focus:outline-none">
+              {isCollapsed ? <ChevronRightIcon className="h-6 w-6" /> : <ChevronLeftIcon className="h-6 w-6" />}
+            </button>
+          </div>
           <nav className="space-y-2">
-            <Link href="/report" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <HomeIcon className="h-5 w-5 text-white" />
-                <span>Home</span>
-              </a>
+            <Link href="/report" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <HomeIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Home</span>}
             </Link>
-            <Link href="/report/analisiprogetti" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
-                <span>Analisi Tempistiche Progetti</span>
-              </a>
+            <Link href="/report/analisiprogetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Analisi Tempistiche Progetti</span>}
             </Link>
-            <Link href="/report/reportattivita" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <DocumentTextIcon className="h-5 w-5 text-white" />
-                <span>Report Attività</span>
-              </a>
+            <Link href="/report/reportattivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <DocumentTextIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Report Attività</span>}
             </Link>
-            <Link href="/report/reportcripto" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <ChartPieIcon className="h-5 w-5 text-white" />
-                <span>Report Cripto</span>
-              </a>
+            <Link href="/report/reportcripto" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <ChartPieIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Report Cripto</span>}
             </Link>
-            <Link href="/report/validitadocumento" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <DocumentCheckIcon className="h-5 w-5 text-white" />
-                <span>Validità Documento</span>
-              </a>
+            <Link href="/report/validitadocumento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <DocumentCheckIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Validità Documento</span>}
             </Link>
-            <Link href="/report/analisispese" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <CurrencyDollarIcon className="h-5 w-5 text-white" />
-                <span>Analisi Spese</span>
-              </a>
+            <Link href="/report/analisispese" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CurrencyDollarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Analisi Spese</span>}
             </Link>
-            <Link href="/report/reportcalendario" legacyBehavior>
-              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-                <CalendarIcon className="h-5 w-5 text-white" />
-                <span>Report Calendario</span>
-              </a>
+            <Link href="/report/reportcalendario" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CalendarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Report Calendario</span>}
             </Link>
           </nav>
         </div>
