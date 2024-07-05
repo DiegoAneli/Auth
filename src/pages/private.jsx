@@ -56,7 +56,7 @@ const PrivatePage = () => {
           <div className="text-white text-center px-6 py-20">
             <h2 className="text-3xl font-bold mb-4">Continua a Gestire i Tuoi Task in Modo Efficace!</h2>
             <p className="text-xl mb-8">Rimani sempre aggiornato e collabora con il tuo team.</p>
-            <Link href="/auth/dashboard">
+            <Link href="/dashboard">
               <button className="bg-white text-blue-600 py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition duration-300">
                 Vai alla dashboard
               </button>

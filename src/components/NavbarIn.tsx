@@ -29,7 +29,7 @@ const NavbarIn = () => {
           )}
         </div>
         <div className="hidden md:flex space-x-6">
-          <Link href="/auth/dashboard" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
+          <Link href="/dashboard" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
           <Link href="/auth/report" className="text-gray-600 hover:text-gray-800 transition duration-300">Report</Link>
           <Link href="/auth/invite" className="text-gray-600 hover:text-gray-800 transition duration-300">Invita Collaboratore</Link>
         </div>
