@@ -219,7 +219,7 @@ const EditUserPage = () => {
             <div className="flex items-center justify-between mt-6">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300"
+                className="bg-gradient-to-r from-blue-400 via-green-500 to-teal-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300"
               >
                 Aggiorna
               </button>

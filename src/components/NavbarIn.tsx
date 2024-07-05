@@ -17,7 +17,7 @@ const NavbarIn = () => {
     <nav className="bg-[#1A202C] fixed w-full z-10">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="text-2xl font-semibold text-gray-200 mr-4">
+          <div className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 mr-4">
             <Link href="/">
               You4Task
             </Link>
