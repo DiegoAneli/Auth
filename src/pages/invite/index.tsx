@@ -35,15 +35,15 @@ export default function SignIn() {
     <div>
       <NavbarIn />
       <div className="min-h-screen flex flex-col md:flex-row">
-        <div className="flex-1 flex flex-col items-center justify-center bg-white p-10">
-          <h1 className="text-4xl font-bold text-gray-800 mb-6">Invita Utente</h1>
+        <div className="flex-1 flex flex-col items-center justify-center bg-gray-800 p-10">
+          <h1 className="text-4xl font-bold text-gray-200 mb-6">Invita Utente</h1>
           
           <div className="text-center text-gray-500 mb-6"></div>
           {error && <p className="text-red-500 mb-6">{error}</p>}
           {success && <p className="text-green-500 mb-6">{success}</p>}
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 mb-2 text-black">Nome Completo</label>
+              <label htmlFor="name" className="block text-gray-200 mb-2 text-black">Nome Completo</label>
               <input
                 type="text"
                 id="name"
@@ -54,7 +54,7 @@ export default function SignIn() {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
+              <label htmlFor="email" className="block text-gray-200 mb-2">Email</label>
               <input
                 type="email"
                 id="email"

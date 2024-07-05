@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-import { FaGoogle } from 'react-icons/fa';
+import { FaGoogle, FaGithub } from 'react-icons/fa';
 import NavbarUt from '@/components/NavbarUt'; // Assicurati che il percorso sia corretto
+import Link from 'next/link';
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -34,16 +35,33 @@ const SignIn = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#1a202c]">
       <NavbarUt />
-      <div className="min-h-screen flex flex-col md:flex-row">
-        <div className="flex-1 flex flex-col items-center justify-center bg-white p-10">
-          <h1 className="text-4xl font-bold text-gray-800 mb-6">Accedi</h1>
+      <div className="flex items-center justify-center flex-1 w-full max-w-md">
+        <div className="w-full bg-white rounded-lg shadow-lg p-8">
+          <h1 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Accedi</h1>
           
-          {error && <p className="text-red-500 mb-6">{error}</p>}
-          <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
+          <div className="flex justify-center space-x-4 mb-4">
+            <button
+              onClick={() => signIn('google')}
+              className="w-1/2 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center justify-center transition duration-300"
+            >
+              <FaGoogle className="mr-2" /> Google
+            </button>
+            <button
+              onClick={() => signIn('github')}
+              className="w-1/2 bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded-lg flex items-center justify-center transition duration-300"
+            >
+              <FaGithub className="mr-2" /> GitHub
+            </button>
+          </div>
+
+          <p className="text-center text-gray-600 mb-4">Oppure accedi con le credenziali</p>
+          
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-gray-700 mb-2">E-mail</label>
               <input
                 type="email"
                 id="email"
@@ -53,8 +71,8 @@ const SignIn = () => {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
+            <div>
+              <label htmlFor="password" className="block text-gray-700 mb-2">Parola d'ordine</label>
               <input
                 type="password"
                 id="password"
@@ -64,23 +82,25 @@ const SignIn = () => {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
               />
             </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="remember"
+                className="mr-2"
+              />
+              <label htmlFor="remember" className="text-gray-700">Ricordati di me</label>
+            </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg transition duration-300 mb-5"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-300"
             >
-              Accedi
-            </button>
-
-            <button
-              onClick={() => signIn('google')}
-              className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg flex items-center justify-center mb-6 transition duration-300"
-            >
-              <FaGoogle className="mr-2" /> Accedi con Google
+              Registrazione
             </button>
           </form>
-        </div>
-        <div className="flex-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
-          {/* Placeholder for background image or gradient */}
+          <div className="flex justify-between items-center mt-4">
+            <Link href="/forgot-password" className="text-sm text-gray-600 hover:underline">Ha dimenticato la password?</Link>
+            <Link href="/auth/register" className="text-sm text-gray-600 hover:underline">Crea un nuovo account</Link>
+          </div>
         </div>
       </div>
     </div>

@@ -75,17 +75,17 @@ const EditUserPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="bg-gray-800 min-h-screen flex flex-col">
       <NavbarIn />
       <div className="flex-grow flex items-center justify-center">
-        <div className="w-full px-8 md:px-16 lg:px-32 xl:px-64 bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
+        <div className="w-full px-8 md:px-16 lg:px-32 xl:px-64 bg-gray-800 p-8 rounded-lg">
+          <h1 className="text-4xl font-bold text-gray-200 mb-8 text-center">
             Modifica Profilo
           </h1>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="name">
                   Nome
                 </label>
                 <input
@@ -98,7 +98,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="surname">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="surname">
                   Cognome
                 </label>
                 <input
@@ -111,7 +111,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="phone">
                   Numero di Telefono
                 </label>
                 <input
@@ -124,7 +124,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="email">
                   Email
                 </label>
                 <input
@@ -137,7 +137,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="address">
                   Indirizzo
                 </label>
                 <input
@@ -150,7 +150,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="city">
                   Città
                 </label>
                 <input
@@ -163,7 +163,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="postalCode">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="postalCode">
                   CAP
                 </label>
                 <input
@@ -176,7 +176,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fiscalCode">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="fiscalCode">
                   Codice Fiscale
                 </label>
                 <input
@@ -189,7 +189,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="image">
                   Immagine
                 </label>
                 <input
@@ -202,7 +202,7 @@ const EditUserPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="birthdate">
+                <label className="block text-gray-200 text-sm font-bold mb-2" htmlFor="birthdate">
                   Data di Nascita
                 </label>
                 <input

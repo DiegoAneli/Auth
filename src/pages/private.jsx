@@ -2,9 +2,9 @@
 
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import NavbarIn from '../components/NavbarIn';
+import NavbarIn from '@/components/NavbarIn';
 
 const PrivatePage = () => {
   const { data: session, status } = useSession();
@@ -27,37 +27,27 @@ const PrivatePage = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col items-center bg-[#1a202c]">
       <NavbarIn />
-      
-      <div className="min-h-screen flex flex-col md:flex-row">
-        {/* Left section */}
-        <div className="flex-1 flex flex-col justify-center bg-white p-10">
-          <h1 className="text-6xl font-bold text-gray-800 mb-4">
+      <div className="flex items-center justify-center flex-1 w-full mt-16 max-w-4xl">
+        <div className="w-full bg-white rounded-lg shadow-lg p-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4 text-center">
             Benvenuto {session.user?.name} !
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-gray-600 mb-8 text-center">
             Ti sei registrato con l'email: <strong>{session.user?.email}</strong>
           </p>
-          <p className="text-md text-gray-600 mb-8">
-            Questa è la tua pagina privata dove puoi gestire i tuoi task in modo semplice e intuitivo.
+          <p className="text-md text-gray-600 mb-8 text-center">
+            Questa è la tua sezione privata dove puoi gestire i tuoi task in modo semplice e intuitivo.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 justify-center">
             <Link href="/api/auth/signout">
               <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Esci
               </button>
             </Link>
-          </div>
-        </div>
-        
-        {/* Right section */}
-        <div className="flex-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
-          <div className="text-white text-center px-6 py-20">
-            <h2 className="text-3xl font-bold mb-4">Continua a Gestire i Tuoi Task in Modo Efficace!</h2>
-            <p className="text-xl mb-8">Rimani sempre aggiornato e collabora con il tuo team.</p>
             <Link href="/dashboard">
-              <button className="bg-white text-blue-600 py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition duration-300">
+              <button className="bg-gradient-to-r from-blue-400 via-green-500 to-teal-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Vai alla dashboard
               </button>
             </Link>

@@ -10,24 +10,24 @@ export default function Home() {
 
       <div className="min-h-screen flex flex-col md:flex-row">
         {/* Left section */}
-        <div className="flex-1 flex flex-col justify-center bg-white p-10">
-          <h1 className="text-6xl font-bold text-gray-800 mb-4">
+        <div className="flex-1 flex flex-col justify-center bg-[#1A202C]  p-10">
+          <h1 className="text-6xl font-bold text-gray-200 mb-4">
             Rendi la Gestione dei Tuoi Progetti Semplice e Intuitiva
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-gray-400 mb-8">
             Un software di gestione dei task pensato per semplificare la tua giornata lavorativa, migliorare la collaborazione e aumentare la produttività.
           </p>
-          <p className="text-md text-gray-600 mb-8">
+          <p className="text-md text-gray-400 mb-8">
             You4Task è il tuo nuovo alleato nella gestione dei progetti. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui tuoi obiettivi. Che tu lavori da solo o in team, You4Task è la soluzione perfetta per ottimizzare il tuo tempo e migliorare l'efficienza.
           </p>
           <div className="flex space-x-4">
             <Link href="/auth/register">
-              <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
+              <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-gray-200 py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Registrati
               </button>
             </Link>
             <Link href="/api/auth/signin?csrf=true">
-              <button className="bg-gradient-to-r from-blue-400 via-green-500 to-teal-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
+              <button className="bg-gradient-to-r from-blue-400 via-green-500 to-teal-500 text-gray-200 py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Accedi
               </button>
             </Link>
@@ -41,9 +41,9 @@ export default function Home() {
       </div>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-200">
+      <section id="features" className="py-20 bg-[#1A202C]">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-400">Caratteristiche Principali</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-200">Caratteristiche Principali</h2>
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/3 px-4 py-6">
               <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -86,9 +86,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="bg-gray-100 py-20">
+      <section id="testimonials" className="bg-[#1A202C] py-20">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Cosa Dicono i Nostri Utenti</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-200">Cosa Dicono i Nostri Utenti</h2>
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/3 px-4 py-6">
               <div className="bg-white p-6 rounded-lg shadow-lg">

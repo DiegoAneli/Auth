@@ -30,11 +30,11 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="bg-gray-800 min-h-screen flex flex-col">
       <NavbarIn />
-      <div className="flex flex-1">
+      <div className="flex flex-1 mt-14">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-800 text-white p-4">
+        <div className="w-64 bg-[#1A202C] text-white p-4">
           <h2 className="text-2xl font-bold mb-4">Report</h2>
           <nav className="space-y-2">
             <Link href="/report" legacyBehavior>
@@ -88,7 +88,7 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
             children
           ) : (
             <>
-              <h1 className="text-4xl font-bold text-gray-400 mt-8">Report</h1>
+              <h1 className="text-4xl font-bold text-gray-400 mt-8">Home</h1>
               <p className="text-lg text-gray-600 mb-8">
                 Seleziona una sezione dal menu a sinistra.
               </p>
