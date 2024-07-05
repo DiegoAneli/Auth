@@ -14,50 +14,50 @@ const NavbarIn = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg fixed w-full z-10">
+    <nav className="bg-[#352651] shadow-lg fixed w-full z-10">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="text-2xl font-semibold text-gray-800 mr-4">
+          <div className="text-2xl font-semibold text-white mr-4">
             <Link href="/">
               You4Task
             </Link>
           </div>
           {session && (
-            <div className="text-gray-800">
+            <div className="text-white">
               Benvenuto, {session.user?.name}
             </div>
           )}
         </div>
         <div className="hidden md:flex space-x-6">
-          <Link href="/dashboard" className="text-gray-600 hover:text-gray-800 transition duration-300">Dashboard</Link>
-          <Link href="/report" className="text-gray-600 hover:text-gray-800 transition duration-300">Report</Link>
-          <Link href="/invite" className="text-gray-600 hover:text-gray-800 transition duration-300">Invita Collaboratore</Link>
+          <Link href="/dashboard" className="text-white hover:text-gray-300 transition duration-300">Dashboard</Link>
+          <Link href="/report" className="text-white hover:text-gray-300 transition duration-300">Report</Link>
+          <Link href="/invite" className="text-white hover:text-gray-300 transition duration-300">Invita Collaboratore</Link>
         </div>
         <div className="hidden md:flex space-x-4 items-center">
           <Link href="/api/auth/signout">
-            <FaSignOutAlt className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
+            <FaSignOutAlt className="text-2xl text-white hover:text-gray-300 transition duration-300" />
           </Link>
           <Link href="/user/edit">
-            <FaUser className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
+            <FaUser className="text-2xl text-white hover:text-gray-300 transition duration-300" />
           </Link>
         </div>
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-gray-600 hover:text-gray-800 transition duration-300">
+          <button onClick={toggleMenu} className="text-white hover:text-gray-300 transition duration-300">
             {isOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
           </button>
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <Link href="/auth/dashboard" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
-          <Link href="/auth/report" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>Report</Link>
-          <Link href="/auth/invite" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+        <div className="md:hidden bg-[#352651] shadow-lg">
+          <Link href="/dashboard" className="block px-6 py-4 text-white hover:text-gray-300 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
+          <Link href="/report" className="block px-6 py-4 text-white hover:text-gray-300 transition duration-300" onClick={toggleMenu}>Report</Link>
+          <Link href="/invite" className="block px-6 py-4 text-white hover:text-gray-300 transition duration-300" onClick={toggleMenu}>
             <FaUserPlus className="inline mr-2" /> Invita Collaboratore
           </Link>
-          <Link href="/user/edit" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link href="/user/edit" className="block px-6 py-4 text-white hover:text-gray-300 transition duration-300" onClick={toggleMenu}>
             <FaUser className="inline mr-2" /> Modifica Utente
           </Link>
-          <Link href="/api/auth/signout" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link href="/api/auth/signout" className="block px-6 py-4 text-white hover:text-gray-300 transition duration-300" onClick={toggleMenu}>
             <FaSignOutAlt className="inline mr-2" /> Esci
           </Link>
         </div>

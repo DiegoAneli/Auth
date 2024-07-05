@@ -226,7 +226,7 @@ const EditUserPage = () => {
             </div>
           </form>
           <div className="flex space-x-4 mt-6 justify-center">
-            <Link href="/auth/dashboard">
+            <Link href="/dashboard">
               <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Vai alla Dashboard
               </button>

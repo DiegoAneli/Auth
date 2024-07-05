@@ -4,12 +4,21 @@ import { useSession } from 'next-auth/react';
 import NavbarIn from '@/components/NavbarIn'; // Assicurati che il percorso sia corretto
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { 
+  HomeIcon, 
+  ClipboardDocumentListIcon, 
+  DocumentTextIcon, 
+  ChartPieIcon, 
+  DocumentCheckIcon, 
+  CurrencyDollarIcon, 
+  CalendarIcon 
+} from '@heroicons/react/24/outline';
 
-interface DashboardProps {
+interface ReportDashboardProps {
   children?: ReactNode;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ children }) => {
+const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
   const { data: session, status } = useSession();
 
   if (status === 'loading') {
@@ -26,28 +35,49 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
       <div className="flex flex-1">
         {/* Sidebar */}
         <div className="w-64 bg-gray-800 text-white p-4">
-          <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+          <h2 className="text-2xl font-bold mb-4">Report</h2>
           <nav className="space-y-2">
-            <Link href="/dashboard" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Home</a>
+            <Link href="/report" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <HomeIcon className="h-5 w-5 text-white" />
+                <span>Home</span>
+              </a>
             </Link>
-            <Link href="/dashboard/progetti" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Progetti</a>
+            <Link href="/report/analisiprogetti" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
+                <span>Analisi Tempistiche Progetti</span>
+              </a>
             </Link>
-            <Link href="/dashboard/attivita" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Attività Recenti</a>
+            <Link href="/report/reportattivita" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <DocumentTextIcon className="h-5 w-5 text-white" />
+                <span>Report Attività</span>
+              </a>
             </Link>
-            <Link href="/dashboard/chat" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Chat</a>
+            <Link href="/report/reportcripto" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <ChartPieIcon className="h-5 w-5 text-white" />
+                <span>Report Cripto</span>
+              </a>
             </Link>
-            <Link href="/dashboard/caricadocumento" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Carica Documento</a>
+            <Link href="/report/validitadocumento" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <DocumentCheckIcon className="h-5 w-5 text-white" />
+                <span>Validità Documento</span>
+              </a>
             </Link>
-            <Link href="/dashboard/videoconferenza" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Videoconferenza</a>
+            <Link href="/report/analisispese" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <CurrencyDollarIcon className="h-5 w-5 text-white" />
+                <span>Analisi Spese</span>
+              </a>
             </Link>
-            <Link href="/dashboard/calendario" legacyBehavior>
-              <a className="block px-4 py-2 rounded hover:bg-gray-700">Calendario</a>
+            <Link href="/report/reportcalendario" legacyBehavior>
+              <a className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <CalendarIcon className="h-5 w-5 text-white" />
+                <span>Report Calendario</span>
+              </a>
             </Link>
           </nav>
         </div>
@@ -58,11 +88,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
             children
           ) : (
             <>
-              <h1 className="text-4xl font-bold text-gray-400 mt-8 ">Dashboard</h1>
+              <h1 className="text-4xl font-bold text-gray-400 mt-8">Report</h1>
               <p className="text-lg text-gray-600 mb-8">
-              Seleziona una sezione dal menu a sinistra.
+                Seleziona una sezione dal menu a sinistra.
               </p>
-              <p></p>
             </>
           )}
         </div>
@@ -71,4 +100,4 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   );
 };
 
-export default Dashboard;
+export default ReportDashboard;
