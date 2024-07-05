@@ -83,10 +83,42 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
             children
           ) : (
             <>
-              <h1 className="text-4xl font-bold text-gray-400 mt-8 ">Home</h1>
+              <h1 className="text-4xl font-bold text-gray-400 mt-8">Home</h1>
               <p className="text-lg text-gray-600 mb-8">
                 Seleziona una sezione dal menu a sinistra.
               </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Link href="/dashboard/progetti" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Progetti</h2>
+                  <p>Visualizza e gestisci i tuoi progetti.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/attivita" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Attività Recenti</h2>
+                  <p>Monitora le attività recenti del tuo team.</p>
+                  <p className="text-blue-500 mt-2">+5% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/chat" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Chat</h2>
+                  <p>Partecipa alle discussioni del team.</p>
+                  <p className="text-blue-500 mt-2">+3% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/caricadocumento" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Carica Documento</h2>
+                  <p>Carica e gestisci i tuoi documenti.</p>
+                  <p className="text-green-500 mt-2">+15% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/videoconferenza" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Videoconferenza</h2>
+                  <p>Organizza e partecipa alle videoconferenze.</p>
+                  <p className="text-yellow-500 mt-2">+8% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/calendario" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Calendario</h2>
+                  <p>Gestisci i tuoi appuntamenti e impegni.</p>
+                  <p className="text-yellow-500 mt-2">+12% rispetto al mese scorso</p>
+                </Link>
+              </div>
             </>
           )}
         </div>
