@@ -37,7 +37,7 @@ const NavbarIn = () => {
           <Link href="/api/auth/signout">
             <FaSignOutAlt className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
           </Link>
-          <Link href="/user">
+          <Link href="/user/edit">
             <FaUser className="text-2xl text-gray-600 hover:text-gray-800 transition duration-300" />
           </Link>
         </div>
@@ -54,7 +54,7 @@ const NavbarIn = () => {
           <Link href="/auth/invite" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
             <FaUserPlus className="inline mr-2" /> Invita Collaboratore
           </Link>
-          <Link href="/user" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link href="/user/edit" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
             <FaUser className="inline mr-2" /> Modifica Utente
           </Link>
           <Link href="/api/auth/signout" className="block px-6 py-4 text-gray-600 hover:text-gray-800 transition duration-300" onClick={toggleMenu}>
