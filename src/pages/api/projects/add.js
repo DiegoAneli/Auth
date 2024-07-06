@@ -4,7 +4,6 @@ import { authOptions } from '../auth/[...nextauth]';
 import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 
-
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
 
@@ -13,7 +12,7 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { projectName } = req.body;
+    const { projectName, description, startDate, endDate, image, collaborator } = req.body;
 
     if (!projectName) {
       return res.status(400).json({ message: 'Project name is required' });
@@ -25,6 +24,11 @@ export default async (req, res) => {
     const newProject = {
       _id: new ObjectId(),
       name: projectName,
+      description: description || '',
+      startDate: startDate || '',
+      endDate: endDate || '',
+      image: image || '',
+      collaborator: collaborator || '',
       createdAt: new Date(),
     };
 

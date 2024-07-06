@@ -41,3 +41,14 @@ declare module "next-auth/jwt" {
     birthdate?: string;
   }
 }
+
+
+interface Project {
+  _id: string;
+  name: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  image?: string;
+  collaborator?: string;
+}

@@ -4,15 +4,19 @@ import { useState, useEffect } from 'react';
 import { FaEdit, FaSave, FaTimes, FaTrashAlt, FaPlus } from 'react-icons/fa';
 import Dashboard from './index';
 
+// Importa l'interfaccia Project
+import { Project } from '@/next-auth'; 
+
 const Section1 = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [newProjectName, setNewProjectName] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [image, setImage] = useState('');
   const [collaborator, setCollaborator] = useState('');
-  const [editingProjectId, setEditingProjectId] = useState(null);
+  const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
   const [editingProjectName, setEditingProjectName] = useState('');
   const [originalProjectName, setOriginalProjectName] = useState('');
   const [showAddProject, setShowAddProject] = useState(false);
@@ -24,7 +28,7 @@ const Section1 = () => {
         credentials: 'include',
       });
       if (response.ok) {
-        const projects = await response.json();
+        const projects: Project[] = await response.json();
         setProjects(projects);
       } else {
         console.error('Errore nel caricamento dei progetti');
@@ -53,7 +57,7 @@ const Section1 = () => {
       });
 
       if (response.ok) {
-        const newProject = await response.json();
+        const newProject: Project = await response.json();
         setProjects([...projects, newProject]);
         setNewProjectName('');
         setDescription('');
@@ -68,7 +72,7 @@ const Section1 = () => {
     }
   };
 
-  const deleteProject = async (projectId) => {
+  const deleteProject = async (projectId: string) => {
     const response = await fetch('/api/projects/delete', {
       method: 'POST',
       headers: {
@@ -85,7 +89,7 @@ const Section1 = () => {
     }
   };
 
-  const startEditing = (projectId, projectName) => {
+  const startEditing = (projectId: string, projectName: string) => {
     setEditingProjectId(projectId);
     setEditingProjectName(projectName);
     setOriginalProjectName(projectName);
@@ -97,25 +101,44 @@ const Section1 = () => {
   };
 
   const editProject = async () => {
-    const response = await fetch('/api/projects/edit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({ projectId: editingProjectId, projectName: editingProjectName }),
-    });
+    if (editingProjectId) {
+      const response = await fetch('/api/projects/edit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ projectId: editingProjectId, projectName: editingProjectName }),
+      });
 
-    if (response.ok) {
-      const updatedProjects = projects.map((project) =>
-        project._id === editingProjectId ? { ...project, name: editingProjectName } : project
-      );
-      setProjects(updatedProjects);
-      setEditingProjectId(null);
-      setEditingProjectName('');
-    } else {
-      console.error('Errore nella modifica del progetto');
+      if (response.ok) {
+        const updatedProjects = projects.map((project) =>
+          project._id === editingProjectId ? { ...project, name: editingProjectName } : project
+        );
+        setProjects(updatedProjects);
+        setEditingProjectId(null);
+        setEditingProjectName('');
+      } else {
+        console.error('Errore nella modifica del progetto');
+      }
     }
+  };
+
+  const openProjectModal = async (projectId: string) => {
+    const response = await fetch(`/api/projects/${projectId}`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    if (response.ok) {
+      const project: Project = await response.json();
+      setSelectedProject(project);
+    } else {
+      console.error('Errore nel caricamento del progetto');
+    }
+  };
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
   };
 
   return (
@@ -161,12 +184,20 @@ const Section1 = () => {
                   </button>
                 </>
               ) : (
-                <button
-                  onClick={() => startEditing(project._id, project.name)}
-                  className="text-yellow-500 hover:text-yellow-700"
-                >
-                  <FaEdit />
-                </button>
+                <>
+                  <button
+                    onClick={() => startEditing(project._id, project.name)}
+                    className="text-yellow-500 hover:text-yellow-700"
+                  >
+                    <FaEdit />
+                  </button>
+                  <button
+                    onClick={() => openProjectModal(project._id)}
+                    className="text-gray-500 hover:text-gray-400 text-sm p-1 rounded"
+                  >
+                    Dettagli
+                  </button>
+                </>
               )}
               <button
                 onClick={() => deleteProject(project._id)}
@@ -238,6 +269,22 @@ const Section1 = () => {
                 Aggiungi Progetto
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {selectedProject && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-lg w-3/4 max-w-3xl relative">
+            <button onClick={closeProjectModal} className="text-gray-500 hover:text-gray-700 absolute top-4 right-4">
+              <FaTimes />
+            </button>
+            <h2 className="text-3xl font-bold mb-4">{selectedProject.name}</h2>
+            <p className="mb-4">{selectedProject.description}</p>
+            <p className="mb-4">Data di Inizio: {selectedProject.startDate}</p>
+            <p className="mb-4">Data di Scadenza: {selectedProject.endDate}</p>
+            {selectedProject.image && <img src={selectedProject.image} alt={selectedProject.name} className="mb-4 rounded" />}
+            <p className="mb-4">Collaboratore: {selectedProject.collaborator}</p>
           </div>
         </div>
       )}
