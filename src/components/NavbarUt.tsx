@@ -38,7 +38,7 @@ const NavbarUt = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-white bg-opacity-50 shadow-lg">
+        <div className="md:hidden bg-[#1A202C] bg-opacity-50 shadow-lg">
           <Link href="/api/auth/signin" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
             <FaSignInAlt className="inline mr-2" /> Accedi
           </Link>

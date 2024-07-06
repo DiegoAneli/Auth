@@ -48,16 +48,16 @@ const NavbarIn = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-[#352651] shadow-lg">
-          <Link href="/dashboard" className="block px-6 py-4 text-white hover:text-gray-400 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
-          <Link href="/report" className="block px-6 py-4 text-white hover:text-gray-400 transition duration-300" onClick={toggleMenu}>Report</Link>
-          <Link href="/invite" className="block px-6 py-4 text-white hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
+        <div className="md:hidden bg-[#1A202C] shadow-lg">
+          <Link href="/dashboard" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
+          <Link href="/report" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>Report</Link>
+          <Link href="/invite" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
             <FaUserPlus className="inline mr-2" /> Invita Collaboratore
           </Link>
-          <Link href="/user/edit" className="block px-6 py-4 text-white hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
+          <Link href="/user/edit" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
             <FaUser className="inline mr-2" /> Modifica Utente
           </Link>
-          <Link href="/api/auth/signout" className="block px-6 py-4 text-white hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
+          <Link href="/api/auth/signout" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
             <FaSignOutAlt className="inline mr-2" /> Esci
           </Link>
         </div>
