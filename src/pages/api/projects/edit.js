@@ -4,7 +4,6 @@ import { authOptions } from '../auth/[...nextauth]';
 import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 
-
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
 
@@ -13,32 +12,26 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { projectName } = req.body;
+    const { projectId, projectName } = req.body;
 
-    if (!projectName) {
-      return res.status(400).json({ message: 'Project name is required' });
+    if (!projectId || !projectName) {
+      return res.status(400).json({ message: 'Project ID and new name are required' });
     }
 
     const client = await clientPromise;
     const db = client.db('Users_form_registration');
 
-    const newProject = {
-      _id: new ObjectId(),
-      name: projectName,
-      createdAt: new Date(),
-    };
-
     try {
       const result = await db.collection('users').updateOne(
-        { email: session.user.email },
-        { $push: { projects: newProject } }
+        { email: session.user.email, "projects._id": new ObjectId(projectId) },
+        { $set: { "projects.$.name": projectName } }
       );
 
       if (result.modifiedCount === 0) {
-        return res.status(400).json({ message: 'Failed to add project' });
+        return res.status(400).json({ message: 'Failed to update project' });
       }
 
-      return res.status(201).json(newProject);
+      return res.status(200).json({ message: 'Project updated successfully' });
     } catch (error) {
       return res.status(500).json({ message: 'Database update failed', error });
     }

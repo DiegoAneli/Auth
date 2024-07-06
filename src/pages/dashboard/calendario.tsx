@@ -9,12 +9,12 @@ const Section1 = () => {
 
   const addCalendar = async () => {
     if (newCalendarName.trim() !== '') {
-      const response = await fetch('/api/calendar/add', {
+      const response = await fetch('/api/calendars/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ projectName: newCalendarName }),
+        body: JSON.stringify({ calendarName: newCalendarName }),
       });
 
       if (response.ok) {

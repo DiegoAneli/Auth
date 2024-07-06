@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]';
 import clientPromise from '../../../lib/mongodb';
+import { ObjectId } from 'mongodb';
 
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
@@ -21,6 +22,7 @@ export default async (req, res) => {
     const db = client.db('Users_form_registration');
 
     const newActivity = {
+      _id: new ObjectId(),
       name: activityName,
       createdAt: new Date(),
     };

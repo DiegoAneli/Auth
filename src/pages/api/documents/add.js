@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]';
 import clientPromise from '../../../lib/mongodb';
+import { ObjectId } from 'mongodb';
 
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
@@ -14,13 +15,14 @@ export default async (req, res) => {
     const { documentName } = req.body;
 
     if (!documentName) {
-      return res.status(400).json({ message: 'Project name is required' });
+      return res.status(400).json({ message: 'Document name is required' });
     }
 
     const client = await clientPromise;
     const db = client.db('Users_form_registration');
 
     const newDocument = {
+      _id: new ObjectId(),
       name: documentName,
       createdAt: new Date(),
     };
@@ -28,11 +30,11 @@ export default async (req, res) => {
     try {
       const result = await db.collection('users').updateOne(
         { email: session.user.email },
-        { $push: { projects: newDocument } }
+        { $push: { documents: newDocument } }
       );
 
       if (result.modifiedCount === 0) {
-        return res.status(400).json({ message: 'Failed to add project' });
+        return res.status(400).json({ message: 'Failed to add document' });
       }
 
       return res.status(201).json(newDocument);
