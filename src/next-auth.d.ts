@@ -50,5 +50,6 @@ interface Project {
   startDate: string;
   endDate: string;
   image?: string;
+  avatar: string;
   collaborator?: string;
 }

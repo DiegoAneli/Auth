@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import { FaEdit, FaSave, FaTimes, FaTrashAlt, FaPlus } from 'react-icons/fa';
 import Dashboard from './index';
-
-// Importa l'interfaccia Project
-import { Project } from '@/next-auth'; 
+import { Project } from '@/next-auth';
+import { useSession } from 'next-auth/react';
 
 const Section1 = () => {
+  const { data: session } = useSession();
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [newProjectName, setNewProjectName] = useState('');
@@ -154,7 +154,13 @@ const Section1 = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         {projects.map((project) => (
           <div key={project._id} className="bg-[#2D3748] text-white shadow-md rounded-lg p-4 flex flex-col justify-between">
-            <div className="mb-4">
+            <div className="mb-4 flex items-center">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white mr-2"
+                style={{ background: '#4A5568' }} // Puoi usare un colore di sfondo fisso
+              >
+                {project.avatar}
+              </div>
               {editingProjectId === project._id ? (
                 <input
                   type="text"
@@ -165,9 +171,9 @@ const Section1 = () => {
               ) : (
                 <h3 className="text-xl font-semibold">{project.name}</h3>
               )}
-              <p>{project.description}</p>
             </div>
-            <div className="flex justify-between">
+            <p>{project.description}</p>
+            <div className="flex justify-between mt-4">
               {editingProjectId === project._id ? (
                 <>
                   <button
@@ -212,7 +218,10 @@ const Section1 = () => {
 
       {showAddProject && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-lg">
+          <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-lg relative">
+            <button onClick={() => setShowAddProject(false)} className="text-gray-500 hover:text-gray-700 absolute top-4 right-4">
+              <FaTimes />
+            </button>
             <h2 className="text-2xl font-bold mb-4 text-gray-200">Crea Nuovo Progetto</h2>
             <input
               type="text"

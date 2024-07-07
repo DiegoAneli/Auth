@@ -18,6 +18,14 @@ export default async (req, res) => {
       return res.status(400).json({ message: 'Project name is required' });
     }
 
+    // Funzione per ottenere l'avatar come la prima lettera del nome dell'utente
+    const getAvatar = (userName) => {
+      if (!userName) return '';
+      return userName.charAt(0).toUpperCase();
+    };
+
+    const avatar = getAvatar(session.user.name);
+
     const client = await clientPromise;
     const db = client.db('Users_form_registration');
 
@@ -28,6 +36,7 @@ export default async (req, res) => {
       startDate: startDate || '',
       endDate: endDate || '',
       image: image || '',
+      avatar: avatar, // Assegna l'avatar qui
       collaborator: collaborator || '',
       createdAt: new Date(),
     };
