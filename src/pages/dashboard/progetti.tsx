@@ -172,7 +172,7 @@ const Section1 = () => {
                 <h3 className="text-xl font-semibold">{project.name}</h3>
               )}
             </div>
-            <p>{project.description}</p>
+            <p className='text-sm p-1'>{project.description}</p>
             <div className="flex justify-between mt-4">
               {editingProjectId === project._id ? (
                 <>
