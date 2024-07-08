@@ -285,7 +285,7 @@ const Section1 = () => {
       {selectedProject && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
           <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-lg w-3/4 max-w-3xl relative">
-            <button onClick={closeProjectModal} className="text-gray-500 hover:text-gray-700 absolute top-4 right-4">
+            <button onClick={closeProjectModal} className="text-gray-200 hover:text-gray-400 absolute top-4 right-4">
               <FaTimes />
             </button>
             <h2 className="text-3xl font-bold mb-4">{selectedProject.name}</h2>
