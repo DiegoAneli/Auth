@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { FaPaperclip, FaSmile, FaMicrophone } from 'react-icons/fa';
 import Dashboard from './index';
 
 const ChatSection = () => {
@@ -75,19 +76,24 @@ const ChatSection = () => {
               </div>
             ))}
           </div>
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Scrivi un messaggio"
-          />
-          <button
-            onClick={sendMessage}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Invia Messaggio
-          </button>
+          <div className="flex items-center bg-gray-700 p-2 rounded mb-4">
+            <button className="text-gray-400 hover:text-white mx-2">
+              <FaPaperclip />
+            </button>
+            <input
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              className="flex-1 p-2 bg-gray-700 text-white rounded"
+              placeholder="Scrivi un messaggio"
+            />
+            <button className="text-gray-400 hover:text-white mx-2">
+              <FaSmile />
+            </button>
+            <button className="text-gray-400 hover:text-white mx-2" onClick={sendMessage}>
+              <FaMicrophone />
+            </button>
+          </div>
         </div>
       </div>
     </Dashboard>
