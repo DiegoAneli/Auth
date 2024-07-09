@@ -36,15 +36,18 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Right section */}
-        <div className="flex-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center relative">
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-            <div className="relative w-3/4 h-3/4 mt-20">
-              <img src="/images/due.png" className="absolute top-0 left-0 w-3/4 h-auto rounded-lg shadow-white" alt="Immagine 1" />
-              <img src="/images/uno.png" className="absolute top-20 left-20 w-3/4 h-auto rounded-lg shadow-white" alt="Immagine 2" />
-              <img src="/images/tre.png" className="absolute top-40 left-40 w-3/4 h-auto rounded-lg shadow-white" alt="Immagine 3" />
+       {/* Right section */}
+       <div className="flex-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-full h-full md:w-3/4 md:h-3/4">
+              <img src="/images/due.png" className="absolute top-0 left-0 w-full h-auto md:w-3/4 rounded-lg shadow-white" alt="Immagine 1" />
+              <img src="/images/uno.png" className="absolute top-20 left-0 w-full h-auto md:w-3/4 md:left-20 rounded-lg shadow-white" alt="Immagine 2" />
+              <img src="/images/tre.png" className="absolute top-40 left-0 w-full h-auto md:w-3/4 md:left-40 rounded-lg shadow-white" alt="Immagine 3" />
             </div>
           </div>
+          {/* Modifica questa sezione per cambiare la sfumatura */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#1A202C] pointer-events-none"></div>
+          {/* Fine della sezione di modifica */}
           <div className="text-white text-6xl font-bold"></div>
         </div>
       </div>

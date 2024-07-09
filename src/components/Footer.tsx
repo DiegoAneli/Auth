@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="text-center mt-8">
+      <div className="text-center mt-8 text-gray-200">
         <p>You4Task © 2024</p>
       </div>
     </footer>
