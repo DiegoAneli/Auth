@@ -27,7 +27,7 @@ export default function InviteCollaborator() {
     e.preventDefault();
 
     try {
-      const res = await fetch('/api/invite', {
+      const res = await fetch('/api/invite/invite', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
