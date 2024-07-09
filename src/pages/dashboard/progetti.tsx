@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 const Section1 = () => {
   const { data: session } = useSession();
   const [projects, setProjects] = useState<Project[]>([]);
+  const [deletedProjects, setDeletedProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [newProjectName, setNewProjectName] = useState('');
   const [description, setDescription] = useState('');
@@ -29,7 +30,8 @@ const Section1 = () => {
       });
       if (response.ok) {
         const projects: Project[] = await response.json();
-        setProjects(projects);
+        setProjects(projects.filter(project => !project.isDeleted));
+        setDeletedProjects(projects.filter(project => project.isDeleted));
       } else {
         console.error('Errore nel caricamento dei progetti');
       }
@@ -52,7 +54,8 @@ const Section1 = () => {
           startDate,
           endDate,
           image,
-          collaborator
+          collaborator,
+          isDeleted: false,
         }),
       });
 
@@ -83,9 +86,32 @@ const Section1 = () => {
     });
 
     if (response.ok) {
-      setProjects(projects.filter((project) => project._id !== projectId));
+      const updatedProjects = projects.filter((project) => project._id !== projectId);
+      const deletedProject = projects.find((project) => project._id === projectId);
+      if (deletedProject) {
+        deletedProject.isDeleted = true;
+        setDeletedProjects([...deletedProjects, deletedProject]);
+      }
+      setProjects(updatedProjects);
     } else {
       console.error('Errore nell\'eliminazione del progetto');
+    }
+  };
+
+  const permanentlyDeleteProject = async (projectId: string) => {
+    const response = await fetch('/api/projects/permanent-delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ projectId }),
+    });
+
+    if (response.ok) {
+      setDeletedProjects(deletedProjects.filter((project) => project._id !== projectId));
+    } else {
+      console.error('Errore nell\'eliminazione definitiva del progetto');
     }
   };
 
@@ -207,6 +233,32 @@ const Section1 = () => {
               )}
               <button
                 onClick={() => deleteProject(project._id)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <FaTrashAlt />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-200">Progetti Eliminati</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+        {deletedProjects.map((project) => (
+          <div key={project._id} className="bg-[#2D3748] text-white shadow-md rounded-lg p-4 flex flex-col justify-between">
+            <div className="mb-4 flex items-center">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white mr-2"
+                style={{ background: '#4A5568' }} // Puoi usare un colore di sfondo fisso
+              >
+                {project.avatar}
+              </div>
+              <h3 className="text-xl font-semibold">{project.name}</h3>
+            </div>
+            <p className='text-sm p-1'>{project.description}</p>
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={() => permanentlyDeleteProject(project._id)}
                 className="text-red-500 hover:text-red-700"
               >
                 <FaTrashAlt />
