@@ -14,12 +14,12 @@ export default function Home() {
         {/* Left section */}
         <div className="flex-1 flex flex-col justify-center bg-[#1A202C] p-10">
           <h1 className="text-6xl font-bold text-gray-200 mb-4">
-            You4Task Rende la Gestione dei Tuoi Progetti Semplice e Intuitiva
+            Rendi la Gestione dei Tuoi Progetti Semplice e Intuitiva
           </h1>
           <p className="text-lg text-gray-400 mb-8">
             Un software di gestione dei task pensato per semplificare la tua giornata lavorativa, migliorare la collaborazione e aumentare la produttività.
           </p>
-          <p className="text-md text-gray-400 mb-8 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+          <p className="text-md text-gray-400 mb-8 text-2xl font-semibold ">
             You4Task è il tuo nuovo alleato nella gestione dei progetti. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui tuoi obiettivi. Che tu lavori da solo o in team, You4Task è la soluzione perfetta per ottimizzare il tuo tempo e migliorare l'efficienza.
           </p>
           <div className="flex space-x-4">
@@ -58,8 +58,8 @@ export default function Home() {
               <div className="mb-4">
                 <FaUserFriends className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200">Interfaccia User-Friendly</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Interfaccia User-Friendly</h3>
+              <p className="text-gray-400">
                 Naviga facilmente tra i tuoi task con un design semplice e intuitivo. Il nostro software è stato progettato per essere utilizzato da chiunque, indipendentemente dal livello di competenza tecnica.
               </p>
             </div>
@@ -67,8 +67,8 @@ export default function Home() {
               <div className="mb-4">
                 <FaProjectDiagram className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200">Collaborazione in Tempo Reale</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Collaborazione in Tempo Reale</h3>
+              <p className="text-gray-400">
                 Lavora insieme al tuo team ovunque tu sia, con aggiornamenti in tempo reale. La nostra piattaforma consente una comunicazione fluida e una condivisione immediata delle informazioni.
               </p>
             </div>
@@ -76,8 +76,8 @@ export default function Home() {
               <div className="mb-4">
                 <FaChartBar className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200">Reportistica Avanzata</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Reportistica Avanzata</h3>
+              <p className="text-gray-400">
                 Monitora l'avanzamento dei tuoi progetti con report dettagliati e personalizzabili. Ottieni una panoramica chiara e approfondita delle tue attività e dei risultati raggiunti.
               </p>
             </div>
@@ -85,8 +85,8 @@ export default function Home() {
               <div className="mb-4">
                 <FaConnectdevelop className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200">Integrazioni Versatili</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Integrazioni Versatili</h3>
+              <p className="text-gray-400">
                 Connetti TaskManager con le tue app preferite per una gestione centralizzata dei tuoi progetti. Sfrutta al massimo gli strumenti che già utilizzi nel tuo flusso di lavoro quotidiano.
               </p>
             </div>
@@ -100,24 +100,24 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-200">Cosa Dicono i Nostri Utenti</h2>
           <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-1/3 px-4 py-6 text-center">
-              <div className="w-24 h-24 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-4">
-                <span className="text-white text-2xl font-bold">D</span>
+              <div className="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center mb-4">
+                <span className="text-gray-800 text-2xl font-bold">D</span>
               </div>
-              <p className="mb-4 text-gray-300">"Grazie a You4Task, il nostro team ha migliorato la collaborazione e ridotto i tempi di consegna dei progetti."</p>
+              <p className="mb-4 text-gray-400">"Grazie a You4Task, il nostro team ha migliorato la collaborazione e ridotto i tempi di consegna dei progetti."</p>
               <p className="font-semibold text-gray-200">- Diego</p>
             </div>
             <div className="w-full md:w-1/3 px-4 py-6 text-center">
-              <div className="w-24 h-24 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-4">
-                <span className="text-white text-2xl font-bold">P</span>
+              <div className="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center mb-4">
+                <span className="text-gray-800 text-2xl font-bold">P</span>
               </div>
-              <p className="mb-4 text-gray-300">"Finalmente ho trovato uno strumento che mi aiuta a rimanere organizzato e a raggiungere i miei obiettivi."</p>
+              <p className="mb-4 text-gray-400">"Finalmente ho trovato uno strumento che mi aiuta a rimanere organizzato e a raggiungere i miei obiettivi."</p>
               <p className="font-semibold text-gray-200">- Pietro</p>
             </div>
             <div className="w-full md:w-1/3 px-4 py-6 text-center">
-              <div className="w-24 h-24 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-4">
-                <span className="text-white text-2xl font-bold">M</span>
+              <div className="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center mb-4">
+                <span className="text-gray-800 text-2xl font-bold">M</span>
               </div>
-              <p className="mb-4 text-gray-300">"Grazie a You4Task, il nostro team ha migliorato la collaborazione e ridotto i tempi di consegna dei progetti."</p>
+              <p className="mb-4 text-gray-400">"Grazie a You4Task, il nostro team ha migliorato la collaborazione e ridotto i tempi di consegna dei progetti."</p>
               <p className="font-semibold text-gray-200">- Michele</p>
             </div>
           </div>
