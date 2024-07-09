@@ -14,12 +14,12 @@ export default function Home() {
         {/* Left section */}
         <div className="flex-1 flex flex-col justify-center bg-[#1A202C] p-10">
           <h1 className="text-6xl font-bold text-gray-200 mb-4">
-            Rendi la Gestione dei Tuoi Progetti Semplice e Intuitiva
+            You4Task Rende la Gestione dei Tuoi Progetti Semplice e Intuitiva
           </h1>
           <p className="text-lg text-gray-400 mb-8">
             Un software di gestione dei task pensato per semplificare la tua giornata lavorativa, migliorare la collaborazione e aumentare la produttività.
           </p>
-          <p className="text-md text-gray-400 mb-8">
+          <p className="text-md text-gray-400 mb-8 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
             You4Task è il tuo nuovo alleato nella gestione dei progetti. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui tuoi obiettivi. Che tu lavori da solo o in team, You4Task è la soluzione perfetta per ottimizzare il tuo tempo e migliorare l'efficienza.
           </p>
           <div className="flex space-x-4">
