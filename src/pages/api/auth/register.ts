@@ -90,7 +90,18 @@ const transporter = nodemailer.createTransport({
   secure: false, // true for 465, false for other ports
 });
 
-export default async function register(req: { method: string; body: { name: any; email: any; password: any; token: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; user?: { name: any; email: any; password: string; createdAt: Date; isVerified: boolean; projects: never[]; }; }): void; new(): any; }; }; }) {
+export default async function register
+
+  (req: 
+    { method: string; 
+      body: { 
+        name: any; 
+        email: any; 
+        password: any; 
+        token: any; };
+     }, res: 
+        { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; user?: { name: any; email: any; password: string; createdAt: Date; isVerified: boolean; projects: never[]; }; }): void; new(): any; }; }; }) {
+          
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }

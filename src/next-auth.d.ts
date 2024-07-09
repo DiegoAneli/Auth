@@ -44,6 +44,9 @@ declare module "next-auth/jwt" {
 
 
 interface Project {
+  isDeleted: boolean;
+  isDeleted: unknown;
+  isDeleted: any;
   _id: string;
   name: string;
   description: string;
