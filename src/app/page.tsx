@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { FaUserFriends, FaChartBar, FaProjectDiagram, FaConnectdevelop } from 'react-icons/fa';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -135,6 +136,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      <Footer></Footer>
     </div>
   );
 }
