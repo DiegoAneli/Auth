@@ -1,12 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { FaPlus } from 'react-icons/fa';
 import NavbarIn from '@/components/NavbarIn';
 
 const ItemTypes = {
   TASK: 'task',
+};
+
+const statusColors = {
+  'Backlog': 'bg-yellow-500',
+  'To Do': 'bg-blue-500',
+  'Doing': 'bg-green-500',
+  'Done': 'bg-purple-500',
+  'Approved': 'bg-red-500',
 };
 
 const Column = ({ status, children }) => {
@@ -16,8 +23,8 @@ const Column = ({ status, children }) => {
   });
 
   return (
-    <div ref={drop} className="w-full p-4 bg-[#4A5568] rounded-lg shadow-md min-h-[200px] text-white">
-      <h2 className="text-xl font-bold mb-4">{status}</h2>
+    <div ref={drop} className="w-full p-4 min-h-[200px] text-white">
+      <h2 className="text-xl font-bold mb-4 text-center">{status}</h2>
       {children}
     </div>
   );
@@ -41,10 +48,10 @@ const Task = ({ task, moveTask }) => {
   return (
     <div
       ref={drag}
-      className={`p-4 mb-4 bg-white rounded-lg shadow-md ${isDragging ? 'opacity-50' : 'opacity-100'}`}
+      className={`p-4 mb-4 rounded-lg shadow-md ${statusColors[task.status]} ${isDragging ? 'opacity-50' : 'opacity-100'}`}
     >
       <h3 className="text-lg font-semibold">{task.title}</h3>
-      <p className="text-gray-500">{task.description}</p>
+      <p className="text-white">{task.description}</p>
     </div>
   );
 };
@@ -55,20 +62,20 @@ const ProjectPage = () => {
 
   const [tasks, setTasks] = useState([
     { id: 1, title: 'Task 1', description: 'Description 1', status: 'Backlog' },
-    { id: 2, title: 'Task 2', description: 'Description 2', status: 'To Do' },
-    { id: 3, title: 'Task 3', description: 'Description 3', status: 'Doing' },
-    { id: 4, title: 'Task 4', description: 'Description 4', status: 'Done' },
-    { id: 5, title: 'Task 5', description: 'Description 1', status: 'Backlog' },
+    { id: 2, title: 'Task 2', description: 'Description 1', status: 'To Do' },
+    { id: 3, title: 'Task 3', description: 'Description 1', status: 'Doing' },
+    { id: 4, title: 'Task 4', description: 'Description 1', status: 'Done' },
+    { id: 5, title: 'Task 5', description: 'Description 2', status: 'Backlog' },
     { id: 6, title: 'Task 6', description: 'Description 2', status: 'To Do' },
-    { id: 7, title: 'Task 7', description: 'Description 3', status: 'Doing' },
-    { id: 8, title: 'Task 8', description: 'Description 4', status: 'Done' },
-    { id: 9, title: 'Task 9', description: 'Description 1', status: 'Backlog' },
-    { id: 10, title: 'Task 10', description: 'Description 2', status: 'To Do' },
+    { id: 7, title: 'Task 7', description: 'Description 2', status: 'Doing' },
+    { id: 8, title: 'Task 8', description: 'Description 2', status: 'Done' },
+    { id: 9, title: 'Task 9', description: 'Description 3', status: 'Backlog' },
+    { id: 10, title: 'Task 10', description: 'Description 3', status: 'To Do' },
     { id: 11, title: 'Task 11', description: 'Description 3', status: 'Doing' },
-    { id: 12, title: 'Task 12', description: 'Description 4', status: 'Done' },
-    { id: 13, title: 'Task 13', description: 'Description 1', status: 'Backlog' },
-    { id: 14, title: 'Task 14', description: 'Description 2', status: 'To Do' },
-    { id: 15, title: 'Task 15', description: 'Description 3', status: 'Doing' },
+    { id: 12, title: 'Task 12', description: 'Description 3', status: 'Done' },
+    { id: 13, title: 'Task 13', description: 'Description 4', status: 'Backlog' },
+    { id: 14, title: 'Task 14', description: 'Description 4', status: 'To Do' },
+    { id: 15, title: 'Task 15', description: 'Description 4', status: 'Doing' },
     { id: 16, title: 'Task 16', description: 'Description 4', status: 'Done' },
   ]);
 
