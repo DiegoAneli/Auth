@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaEdit, FaSave, FaTimes, FaTrashAlt, FaPlus } from 'react-icons/fa';
+import { FaEdit, FaSave, FaTimes, FaTrashAlt, FaPlus, FaPencilAlt } from 'react-icons/fa';
 import Dashboard from './index';
 import { Project } from '@/next-auth';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 const Section1 = () => {
   const { data: session } = useSession();
@@ -229,6 +230,13 @@ const Section1 = () => {
                   >
                     Dettagli
                   </button>
+                  <Link href={`/projects/${project._id}`} legacyBehavior>
+                    <a className="text-blue-500 hover:text-blue-700">
+                      <FaPencilAlt />
+                    </a>
+                  </Link>
+
+                  
                 </>
               )}
               <button
