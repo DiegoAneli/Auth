@@ -75,7 +75,7 @@ const ProjectPage = () => {
   const { projectId } = router.query;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [newTask, setNewTask] = useState({ title: '', description: '', status: 'Backlog' });
+  const [newTask, setNewTask] = useState({ title: '', description: '', status: 'Backlog', collaborator: '', reviewer: '', team: '', document: '', notes: '' });
 
   const [tasks, setTasks] = useState([
     { id: 1, title: 'Task 1', description: 'Description 1', status: 'Backlog' },
@@ -101,7 +101,7 @@ const ProjectPage = () => {
   };
 
   const handleOpenModal = () => {
-    setNewTask({ title: '', description: '', status: 'Backlog' });
+    setNewTask({ title: '', description: '', status: 'Backlog', collaborator: '', reviewer: '', team: '', document: '', notes: '' });
     setShowModal(true);
   };
 
@@ -165,7 +165,7 @@ const ProjectPage = () => {
           <div className="grid grid-cols-4 gap-6 p-4">
             <div
               className="bg-[#2D3748] text-white shadow-md rounded-lg p-4 flex items-center justify-center cursor-pointer mt-14"
-              onClick={() => setShowModal(true)}
+              onClick={handleOpenModal}
             >
               <FaPlus className="text-4xl text-gray-400" />
             </div>
@@ -179,7 +179,6 @@ const ProjectPage = () => {
                   ))}
                 </Column>
               ))}
-             
             </div>
           </div>
         </div>
@@ -217,6 +216,45 @@ const ProjectPage = () => {
                   <option key={status} value={status}>{status}</option>
                 ))}
               </select>
+              <input
+                type="text"
+                name="collaborator"
+                placeholder="Aggiungi Collaboratore"
+                value={newTask.collaborator}
+                onChange={handleInputChange}
+                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+              />
+              <input
+                type="text"
+                name="reviewer"
+                placeholder="Aggiungi Revisore"
+                value={newTask.reviewer}
+                onChange={handleInputChange}
+                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+              />
+              <input
+                type="text"
+                name="team"
+                placeholder="Aggiungi a Team"
+                value={newTask.team}
+                onChange={handleInputChange}
+                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+              />
+              <input
+                type="text"
+                name="document"
+                placeholder="Allega Documento"
+                value={newTask.document}
+                onChange={handleInputChange}
+                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+              />
+              <textarea
+                name="notes"
+                placeholder="Note"
+                value={newTask.notes}
+                onChange={handleInputChange}
+                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+              />
               <div className="flex justify-end space-x-4">
                 <button onClick={handleCloseModal} className="bg-red-500 text-white px-4 py-2 rounded">Annulla</button>
                 <button onClick={handleAddTask} className="bg-blue-500 text-white px-4 py-2 rounded">Aggiungi</button>
