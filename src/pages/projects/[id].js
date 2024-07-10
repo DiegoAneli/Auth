@@ -120,7 +120,7 @@ const ProjectPage = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <NavbarIn />
-      <div className="bg-[#2D3748] min-h-screen text-white flex">
+      <div className="bg-[#1F2937] min-h-screen text-white flex">
         <div className={`bg-[#1A202C] text-white p-4 transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
           <div className="flex justify-between items-center mb-4 mt-14">
             {!isCollapsed && <h2 className="text-2xl font-bold">Dashboard</h2>}
@@ -162,6 +162,14 @@ const ProjectPage = () => {
 
         {/* Main content */}
         <div className="flex-1 p-8">
+          <div className="grid grid-cols-4 gap-6 p-4">
+            <div
+              className="bg-[#2D3748] text-white shadow-md rounded-lg p-4 flex items-center justify-center cursor-pointer mt-14"
+              onClick={() => setShowModal(true)}
+            >
+              <FaPlus className="text-4xl text-gray-400" />
+            </div>
+          </div>
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-10">
               {['Backlog', 'To Do', 'Doing', 'Done', 'Approved'].map((status) => (
@@ -171,12 +179,7 @@ const ProjectPage = () => {
                   ))}
                 </Column>
               ))}
-              <div
-                className="bg-[#2D3748] text-white shadow-md rounded-lg p-4 flex items-center justify-center cursor-pointer"
-                onClick={handleOpenModal}
-              >
-                <FaPlus className="text-4xl text-gray-400" />
-              </div>
+             
             </div>
           </div>
         </div>
