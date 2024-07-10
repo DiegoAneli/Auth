@@ -9,11 +9,13 @@ const ItemTypes = {
 };
 
 const statusColors = {
-  'Backlog': 'bg-yellow-500',
-  'To Do': 'bg-blue-500',
-  'Doing': 'bg-green-500',
-  'Done': 'bg-purple-500',
-  'Approved': 'bg-red-500',
+  'Backlog': 'bg-red-400',
+  'To Do': 'bg-purple-400',
+  'Doing': 'bg-yellow-400',
+  'Done': 'bg-blue-400',
+  'Approved': 'bg-green-400',
+  
+ 
 };
 
 const Column = ({ status, children }) => {
