@@ -219,7 +219,7 @@ const ProjectPage = () => {
               <input
                 type="text"
                 name="collaborator"
-                placeholder="Aggiungi Collaboratore"
+                placeholder="Assegna a Collaboratore"
                 value={newTask.collaborator}
                 onChange={handleInputChange}
                 className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -245,13 +245,6 @@ const ProjectPage = () => {
                 name="document"
                 placeholder="Allega Documento"
                 value={newTask.document}
-                onChange={handleInputChange}
-                className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-              />
-              <textarea
-                name="notes"
-                placeholder="Note"
-                value={newTask.notes}
                 onChange={handleInputChange}
                 className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
               />
