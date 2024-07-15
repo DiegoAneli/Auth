@@ -197,12 +197,12 @@ export default function Register() {
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import NavbarUt from '@/components/NavbarUt'; // Assicurati che il percorso sia corretto
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export default function Register() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
+  const token = searchParams ? searchParams.get('token') : null;
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -210,10 +210,18 @@ export default function Register() {
   useEffect(() => {
     if (token) {
       try {
-        const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
-        setForm({ ...form, email: decoded.email });
+        const secret = process.env.NEXT_PUBLIC_JWT_SECRET;
+        if (!secret) {
+          throw new Error('JWT secret is not defined');
+        }
+        const decoded = jwt.verify(token, secret) as JwtPayload; // Type assertion
+        if (decoded.email) {
+          setForm((prevForm) => ({ ...prevForm, email: decoded.email }));
+        } else {
+          setError('Token non valido o scaduto');
+        }
       } catch (error) {
-        setError('Invalid or expired token');
+        setError('Token non valido o scaduto');
       }
     }
   }, [token]);
