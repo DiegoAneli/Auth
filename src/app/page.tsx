@@ -11,7 +11,7 @@ export default function Home() {
       <Navbar />
 
       <div className="min-h-screen flex flex-col md:flex-row">
-        {/* Left section */}
+        {/* ///Left section */}
         <div className="flex-1 flex flex-col justify-center bg-[#1A202C] p-10">
           <h1 className="text-6xl font-bold text-gray-200 mb-4">
             Rendi la Gestione dei Tuoi Progetti Semplice e Intuitiva
