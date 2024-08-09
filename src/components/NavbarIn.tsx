@@ -48,7 +48,7 @@ const NavbarIn = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-[#1A202C] shadow-lg">
+        //<div className="md:hidden bg-[#1A202C] shadow-lg">
           <Link href="/dashboard" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>Dashboard</Link>
           <Link href="/report" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>Report</Link>
           <Link href="/invite" className="block px-6 py-4 text-gray-200 hover:text-gray-400 transition duration-300" onClick={toggleMenu}>
