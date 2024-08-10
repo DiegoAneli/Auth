@@ -12,6 +12,7 @@ declare module "next-auth" {
       fiscalCode?: string;
       image?: string;
       birthdate?: string;
+      role?: string;
     } & DefaultSession["user"];
   }
 
@@ -25,6 +26,7 @@ declare module "next-auth" {
     fiscalCode?: string;
     image?: string;
     birthdate?: string;
+    role?:string;
   }
 }
 
@@ -39,9 +41,15 @@ declare module "next-auth/jwt" {
     fiscalCode?: string;
     image?: string;
     birthdate?: string;
+    role?:string;
   }
 }
 
+interface Collaborator {
+  id: string;
+  email: string;
+  role: string; // Es. "admin", "guest", etc.
+}
 
 interface Project {
   isDeleted: boolean;
@@ -54,5 +62,5 @@ interface Project {
   endDate: string;
   image?: string;
   avatar: string;
-  collaborator?: string;
+  collaborators: Collaborator[];
 }
