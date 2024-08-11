@@ -6,21 +6,24 @@ import Dashboard from './index';
 const Section1 = () => {
   const [documents, setDocuments] = useState([]);
   const [newDocumentName, setNewDocumentName] = useState('');
+  const [file, setFile] = useState(null);
 
   const addDocument = async () => {
-    if (newDocumentName.trim() !== '') {
+    if (newDocumentName.trim() !== '' && file) {
+      const formData = new FormData();
+      formData.append('documentName', newDocumentName);
+      formData.append('file', file);
+
       const response = await fetch('/api/documents/add', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ documentName: newDocumentName }),
+        body: formData,
       });
 
       if (response.ok) {
         const newDocument = await response.json();
         setDocuments([...documents, newDocument]);
         setNewDocumentName('');
+        setFile(null);
       } else {
         console.error('Errore nella creazione del documento');
       }
@@ -38,6 +41,11 @@ const Section1 = () => {
             onChange={(e) => setNewDocumentName(e.target.value)}
             className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
             placeholder="Nome del Documento"
+          />
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
           />
           <button
             onClick={addDocument}
