@@ -32,6 +32,13 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
     return <div>Access Denied. Please <a href="/auth/signin">sign in</a>.</div>;
   }
 
+  const userRole = session?.user?.role;
+
+  // Se l'utente è guest, non permettere l'accesso a nessuna delle sezioni della dashboard
+  if (userRole === 'guest') {
+    return <div>Access Denied. You do not have permission to view this content.</div>;
+  }
+
   return (
     <div className="bg-gray-800 min-h-screen flex flex-col">
       <NavbarIn />
@@ -53,14 +60,23 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Analisi Tempistiche Progetti</span>}
             </Link>
-            <Link href="/report/reportattivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-              <DocumentTextIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Report Attività</span>}
-            </Link>
-            <Link href="/report/reportcripto" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-              <ChartPieIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Report Cripto</span>}
-            </Link>
+
+
+            {/* Accesso solo per superadmin e admin */}
+            {(userRole === 'superadmin' || userRole === 'admin') && (
+              <>
+                <Link href="/report/reportattivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                  <DocumentTextIcon className="h-5 w-5 text-white" />
+                  {!isCollapsed && <span>Report Attività</span>}
+                </Link>
+                <Link href="/report/reportcripto" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                  <ChartPieIcon className="h-5 w-5 text-white" />
+                  {!isCollapsed && <span>Report Cripto</span>}
+                </Link>
+              </>
+            )}
+
+            
             <Link href="/report/validitadocumento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <DocumentCheckIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Validità Documento</span>}
