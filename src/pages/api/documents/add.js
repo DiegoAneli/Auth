@@ -5,6 +5,7 @@ import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 import formidable from 'formidable';
 import fs from 'fs';
+import path from 'path';
 
 // Disabilita il body parser di Next.js
 export const config = {
@@ -38,11 +39,13 @@ export default async (req, res) => {
       const client = await clientPromise;
       const db = client.db('Users_form_registration');
 
+      const extension = path.extname(file.originalFilename);
       const fileData = fs.readFileSync(file.filepath);
 
       const newDocument = {
         _id: new ObjectId(),
         name: documentName,
+        extension: extension,
         fileData: fileData, // Salva il file come Buffer
         createdAt: new Date(),
       };

@@ -10,21 +10,25 @@ export default async (req, res) => {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  const client = await clientPromise;
-  const db = client.db('Users_form_registration');
+  if (req.method === 'GET') {
+    try {
+      const client = await clientPromise;
+      const db = client.db('Users_form_registration');
 
-  try {
-    const user = await db.collection('users').findOne(
-      { email: session.user.email },
-      { projection: { documents: 1 } }
-    );
+      const user = await db.collection('users').findOne(
+        { email: session.user.email },
+        { projection: { documents: 1 } }
+      );
 
-    if (!user || !user.documents) {
-      return res.status(404).json([]);
+      if (!user || !user.documents) {
+        return res.status(404).json([]);
+      }
+
+      return res.status(200).json(user.documents);
+    } catch (error) {
+      return res.status(500).json({ message: 'Failed to fetch documents', error });
     }
-
-    return res.status(200).json(user.documents);
-  } catch (error) {
-    return res.status(500).json({ message: 'Failed to retrieve documents', error });
+  } else {
+    return res.status(405).json({ message: 'Method not allowed' });
   }
 };

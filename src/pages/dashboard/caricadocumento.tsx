@@ -1,18 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dashboard from './index';
 
 const Section1 = () => {
   const [documents, setDocuments] = useState([]);
   const [newDocumentName, setNewDocumentName] = useState('');
-  const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      const response = await fetch('/api/documents/list');
+      const docs = await response.json();
+      setDocuments(docs);
+    };
+
+    fetchDocuments();
+  }, []);
 
   const addDocument = async () => {
-    if (newDocumentName.trim() !== '' && file) {
+    if (newDocumentName.trim() !== '' && selectedFile) {
       const formData = new FormData();
       formData.append('documentName', newDocumentName);
-      formData.append('file', file);
+      formData.append('file', selectedFile);
 
       const response = await fetch('/api/documents/add', {
         method: 'POST',
@@ -23,7 +33,7 @@ const Section1 = () => {
         const newDocument = await response.json();
         setDocuments([...documents, newDocument]);
         setNewDocumentName('');
-        setFile(null);
+        setSelectedFile(null);
       } else {
         console.error('Errore nella creazione del documento');
       }
@@ -44,7 +54,7 @@ const Section1 = () => {
           />
           <input
             type="file"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={(e) => setSelectedFile(e.target.files[0])}
             className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
           />
           <button
@@ -57,7 +67,13 @@ const Section1 = () => {
           <ul className="list-disc list-inside">
             {documents.map((document, index) => (
               <li key={index} className="text-lg mt-2">
-                {document.name}
+                <a
+                  href={`/api/documents/download?id=${document._id}`}
+                  className="text-blue-400 hover:text-blue-600"
+                  download={document.originalFilename}
+                >
+                  {document.name} ({document.originalFilename}) - {document.extension}
+                </a>
               </li>
             ))}
           </ul>
