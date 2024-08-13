@@ -56,19 +56,19 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
             </Link>
             <Link href="/dashboard/attivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <DocumentIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Attività Recenti</span>}
+              {!isCollapsed && <span>Attività ed Interventi</span>}
             </Link>
-            <Link href="/dashboard/chat" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/dashboard/argomenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ChatBubbleLeftRightIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Chat</span>}
+              {!isCollapsed && <span>Argomenti</span>}
             </Link>
-            <Link href="/dashboard/caricadocumento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/dashboard/documenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <DocumentArrowUpIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Carica Documento</span>}
+              {!isCollapsed && <span>Documenti</span>}
             </Link>
-            <Link href="/dashboard/videoconferenza" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/dashboard/sondaggi" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <VideoCameraIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Videoconferenza</span>}
+              {!isCollapsed && <span>Sondaggi e Proposte</span>}
             </Link>
             <Link href="/dashboard/calendario" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <CalendarIcon className="h-5 w-5 text-white" />
@@ -94,22 +94,22 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                   <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
                 </Link>
                 <Link href="/dashboard/attivita" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
-                  <h2 className="text-2xl font-bold mb-4">Attività Recenti</h2>
+                  <h2 className="text-2xl font-bold mb-4">Attività ed Interventi</h2>
                   <p>Monitora le attività recenti del tuo team.</p>
                   <p className="text-blue-500 mt-2">+5% rispetto al mese scorso</p>
                 </Link>
-                <Link href="/dashboard/chat" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
-                  <h2 className="text-2xl font-bold mb-4">Chat</h2>
+                <Link href="/dashboard/argomenti" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Argomenti</h2>
                   <p>Partecipa alle discussioni del team.</p>
                   <p className="text-blue-500 mt-2">+3% rispetto al mese scorso</p>
                 </Link>
-                <Link href="/dashboard/caricadocumento" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
-                  <h2 className="text-2xl font-bold mb-4">Carica Documento</h2>
+                <Link href="/dashboard/documenti" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Documenti</h2>
                   <p>Carica e gestisci i tuoi documenti.</p>
                   <p className="text-green-500 mt-2">+15% rispetto al mese scorso</p>
                 </Link>
-                <Link href="/dashboard/videoconferenza" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
-                  <h2 className="text-2xl font-bold mb-4">Videoconferenza</h2>
+                <Link href="/dashboard/sondaggi" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Sondaggi e Proposte</h2>
                   <p>Organizza e partecipa alle videoconferenze.</p>
                   <p className="text-yellow-500 mt-2">+8% rispetto al mese scorso</p>
                 </Link>

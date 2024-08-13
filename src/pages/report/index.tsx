@@ -56,9 +56,9 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
               <HomeIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Home</span>}
             </Link>
-            <Link href="/report/analisiprogetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/report/reportprogetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Analisi Tempistiche Progetti</span>}
+              {!isCollapsed && <span>Report Progetti</span>}
             </Link>
 
 
@@ -69,21 +69,21 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
                   <DocumentTextIcon className="h-5 w-5 text-white" />
                   {!isCollapsed && <span>Report Attività</span>}
                 </Link>
-                <Link href="/report/reportcripto" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <Link href="/report/reportargomenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
                   <ChartPieIcon className="h-5 w-5 text-white" />
-                  {!isCollapsed && <span>Report Cripto</span>}
+                  {!isCollapsed && <span>Report Argomenti</span>}
                 </Link>
               </>
             )}
 
             
-            <Link href="/report/validitadocumento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/report/reportsondaggi" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <DocumentCheckIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Validità Documento</span>}
+              {!isCollapsed && <span>Report Sondaggi e proposte</span>}
             </Link>
-            <Link href="/report/analisispese" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/report/reportspese" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <CurrencyDollarIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Analisi Spese</span>}
+              {!isCollapsed && <span>Report Spese</span>}
             </Link>
             <Link href="/report/reportcalendario" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <CalendarIcon className="h-5 w-5 text-white" />
