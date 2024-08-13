@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import { FaUserFriends, FaChartBar, FaProjectDiagram, FaConnectdevelop } from 'react-icons/fa';
+import { FaUserFriends, FaChartBar, FaBuilding, FaConnectdevelop } from 'react-icons/fa';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -14,13 +14,13 @@ export default function Home() {
         {/* ///Left section */}
         <div className="flex-1 flex flex-col justify-center bg-[#1A202C] p-10">
           <h1 className="text-6xl font-bold text-gray-200 mb-4">
-            Rendi la Gestione dei Tuoi Progetti Semplice e Intuitiva
+            Rendi la Gestione del Tuo Condominio Semplice e Intuitiva
           </h1>
           <p className="text-lg text-gray-400 mb-8">
-            Un software di gestione dei task pensato per semplificare la tua giornata lavorativa, migliorare la collaborazione e aumentare la produttività.
+            Un software gestionale pensato per semplificare la gestione del tuo condominio, migliorare la comunicazione tra gli inquilini e facilitare l'amministrazione.
           </p>
           <p className="text-md text-gray-400 mb-8 text-2xl font-semibold ">
-            You4Task è il tuo nuovo alleato nella gestione dei progetti. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui tuoi obiettivi. Che tu lavori da solo o in team, You4Task è la soluzione perfetta per ottimizzare il tuo tempo e migliorare l'efficienza.
+            You4Condo è il tuo nuovo alleato nella gestione del condominio. Con un'interfaccia intuitiva e funzionalità avanzate, ti aiuta a rimanere organizzato e concentrato sui compiti amministrativi. Che tu sia un amministratore di condominio o un inquilino, You4Condo è la soluzione perfetta per ottimizzare la gestione e migliorare l'efficienza.
           </p>
           <div className="flex space-x-4">
             <Link href="/auth/register">
@@ -61,27 +61,27 @@ export default function Home() {
               <div className="mb-4">
                 <FaUserFriends className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Interfaccia User-Friendly</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Comunicazione Efficace</h3>
               <p className="text-gray-400">
-                Naviga facilmente tra i tuoi task con un design semplice e intuitivo. Il nostro software è stato progettato per essere utilizzato da chiunque, indipendentemente dal livello di competenza tecnica.
+                Facilita la comunicazione tra inquilini e amministratori con una piattaforma centralizzata, semplice e intuitiva.
               </p>
             </div>
             <div className="flex flex-col items-center text-center bg-gray-800 p-6 rounded-lg shadow-lg">
               <div className="mb-4">
-                <FaProjectDiagram className="h-12 w-12 text-gray-200" />
+                <FaBuilding className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Collaborazione in Tempo Reale</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Gestione Condominio</h3>
               <p className="text-gray-400">
-                Lavora insieme al tuo team ovunque tu sia, con aggiornamenti in tempo reale. La nostra piattaforma consente una comunicazione fluida e una condivisione immediata delle informazioni.
+                Monitora e gestisci tutte le attività del condominio, dagli interventi di manutenzione alle assemblee condominiali.
               </p>
             </div>
             <div className="flex flex-col items-center text-center bg-gray-800 p-6 rounded-lg shadow-lg">
               <div className="mb-4">
                 <FaChartBar className="h-12 w-12 text-gray-200" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Reportistica Avanzata</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Reportistica e Contabilità</h3>
               <p className="text-gray-400">
-                Monitora l'avanzamento dei tuoi progetti con report dettagliati e personalizzabili. Ottieni una panoramica chiara e approfondita delle tue attività e dei risultati raggiunti.
+                Ottieni report dettagliati sulla contabilità condominiale, verifica il budget e mantieni sotto controllo le spese.
               </p>
             </div>
             <div className="flex flex-col items-center text-center bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -90,7 +90,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Integrazioni Versatili</h3>
               <p className="text-gray-400">
-                Connetti TaskManager con le tue app preferite per una gestione centralizzata dei tuoi progetti. Sfrutta al massimo gli strumenti che già utilizzi nel tuo flusso di lavoro quotidiano.
+                Connetti il gestionale condominiale con le tue app preferite per una gestione centralizzata e fluida.
               </p>
             </div>
           </div>
@@ -106,21 +106,21 @@ export default function Home() {
               <div className="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center mb-4">
                 <span className="text-gray-800 text-2xl font-bold">D</span>
               </div>
-              <p className="mb-4 text-gray-400">"Grazie a You4Task, il nostro team ha migliorato la collaborazione e ridotto i tempi di consegna dei progetti."</p>
+              <p className="mb-4 text-gray-400">"Grazie a You4Condo, la gestione del nostro condominio è diventata molto più semplice e trasparente."</p>
               <p className="font-semibold text-gray-200">- Diego</p>
             </div>
             <div className="w-full md:w-1/3 px-4 py-6 text-center">
               <div className="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center mb-4">
                 <span className="text-gray-800 text-2xl font-bold">P</span>
               </div>
-              <p className="mb-4 text-gray-400">"Finalmente ho trovato uno strumento che mi aiuta a rimanere organizzato e a raggiungere i miei obiettivi."</p>
+              <p className="mb-4 text-gray-400">"Finalmente un gestionale che mi permette di mantenere tutto sotto controllo senza fatica."</p>
               <p className="font-semibold text-gray-200">- Pietro</p>
             </div>
             <div className="w-full md:w-1/3 px-4 py-6 text-center">
               <div className="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center mb-4">
                 <span className="text-gray-800 text-2xl font-bold">M</span>
               </div>
-              <p className="mb-4 text-gray-400">"Grazie a You4Task, il nostro team ha migliorato la collaborazione e ridotto i tempi di consegna dei progetti."</p>
+              <p className="mb-4 text-gray-400">"You4Condo ha semplificato la gestione dei conti e ha migliorato la trasparenza delle spese."</p>
               <p className="font-semibold text-gray-200">- Michele</p>
             </div>
           </div>
@@ -130,8 +130,8 @@ export default function Home() {
       {/* Call to Action Section */}
       <section id="cta" className="py-20 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white text-center">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-4">Inizia Ora Gratuitamente e Scopri Come Possiamo Trasformare la Tua Produttività!</h2>
-          <p className="text-xl mb-8">Iscriviti Subito e Gestisci i Tuoi Task con Facilità!</p>
+          <h2 className="text-3xl font-bold mb-4">Inizia Ora Gratuitamente e Scopri Come Possiamo Trasformare la Gestione del Tuo Condominio!</h2>
+          <p className="text-xl mb-8">Iscriviti Subito e Gestisci il Tuo Condominio con Facilità!</p>
           <Link href="/api/auth/signin?csrf=true">
             <button className="bg-white text-blue-600 py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition duration-300">
               Inizia Ora
