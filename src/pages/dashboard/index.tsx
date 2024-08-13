@@ -50,6 +50,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               <HomeIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Home</span>}
             </Link>
+            <Link href="/dashboard/anagrafica" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CalendarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Anagrafica</span>}
+            </Link>
             <Link href="/dashboard/progetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Progetti</span>}
@@ -88,6 +92,11 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                 Seleziona una sezione dal menu a sinistra.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Link href="/dashboard/anagrafica" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Anagrafica</h2>
+                  <p>Visualizza i condomini.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
                 <Link href="/dashboard/progetti" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
                   <h2 className="text-2xl font-bold mb-4">Progetti</h2>
                   <p>Visualizza e gestisci i tuoi progetti.</p>
