@@ -14,7 +14,8 @@ import {
   VideoCameraIcon,
   CalendarIcon,
   ChevronLeftIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  CurrencyDollarIcon
 } from '@heroicons/react/24/outline';
 
 interface DashboardProps {
@@ -78,6 +79,22 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               <CalendarIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Calendario</span>}
             </Link>
+            <Link href="/dashboard/spese" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CurrencyDollarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Spese</span>}
+            </Link>
+            <Link href="/dashboard/regolamento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CalendarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Regolamento Condominio</span>}
+            </Link>
+            <Link href="/dashboard/mappa" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CalendarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Mappa e Servizi</span>}
+            </Link>
+            <Link href="/dashboard/emergenza" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CalendarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Emergenza</span>}
+            </Link>
           </nav>
         </div>
 
@@ -126,6 +143,26 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                   <h2 className="text-2xl font-bold mb-4">Calendario</h2>
                   <p>Gestisci i tuoi appuntamenti e impegni.</p>
                   <p className="text-yellow-500 mt-2">+12% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/spese" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Spese</h2>
+                  <p>Visualizza le tue spese.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/regolamento" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Regolamento Condominio</h2>
+                  <p>Visualizza il regolamento per una buona civiltà.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/mappa" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Mappa e Servizi</h2>
+                  <p>Visualizza i servizi e la cartina del condominio.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/mappa" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Emergenza ed Alert</h2>
+                  <p>Visualizza e crea Emergenze ed Alert.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
                 </Link>
               </div>
             </>

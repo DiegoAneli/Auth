@@ -40,6 +40,18 @@ const Section1 = () => {
     }
   };
 
+  const deleteDocument = async (id) => {
+    const response = await fetch(`/api/documents/delete?id=${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      setDocuments(documents.filter((doc) => doc._id !== id));
+    } else {
+      console.error('Errore durante l\'eliminazione del documento');
+    }
+  };
+
   return (
     <Dashboard>
       <div className="grid grid-cols-1 gap-6 p-4">
@@ -64,19 +76,55 @@ const Section1 = () => {
             Aggiungi Documento
           </button>
           <h2 className="text-2xl font-bold mt-6">Documenti Attuali</h2>
-          <ul className="list-disc list-inside">
-            {documents.map((document, index) => (
-              <li key={index} className="text-lg mt-2">
-                <a
-                  href={`/api/documents/download?id=${document._id}`}
-                  className="text-blue-400 hover:text-blue-600"
-                  download={document.originalFilename}
-                >
-                  {document.name} ({document.originalFilename}) - {document.extension}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-[#2D3748] text-white">
+              <thead>
+                <tr>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Nome Documento
+                  </th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Nome File
+                  </th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Estensione
+                  </th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Azioni
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {documents.map((document, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
+                      <a
+                        href={`/api/documents/download?id=${document._id}`}
+                        className="text-blue-400 hover:text-blue-600"
+                        download={document.originalFilename}
+                      >
+                        {document.name}
+                      </a>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
+                      {document.originalFilename}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
+                      {document.extension}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
+                      <button
+                        onClick={() => deleteDocument(document._id)}
+                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                      >
+                        Elimina
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </Dashboard>
