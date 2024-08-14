@@ -10,19 +10,15 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { nome, dataPresumibileInizio, dataPresumibileFine, tipologia, azienda, costo } = req.body;
 
-    const newCondomino = {
-      name,
-      surname,
-      phone,
-      email,
-      edificio,
-      scala,
-      garage,
-      postoAuto,
-      proprietario,
-      affittuario,
+    const newIntervento = {
+      nome,
+      dataPresumibileInizio,
+      dataPresumibileFine,
+      tipologia,
+      azienda,
+      costo,
       createdAt: new Date(),
     };
 
@@ -30,15 +26,15 @@ export default async (req, res) => {
       const client = await clientPromise;
       const db = client.db('Users_form_registration');
       
-      // Inserisci il nuovo documento
-      const result = await db.collection('condomini').insertOne(newCondomino);
+      // Inserisci il nuovo intervento
+      const result = await db.collection('interventi').insertOne(newIntervento);
 
       // Trova il documento appena inserito
-      const insertedCondomino = await db.collection('condomini').findOne({ _id: result.insertedId });
+      const insertedIntervento = await db.collection('interventi').findOne({ _id: result.insertedId });
 
-      return res.status(201).json(insertedCondomino);
+      return res.status(201).json(insertedIntervento);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to add condomino', error });
+      return res.status(500).json({ message: 'Failed to add intervento', error });
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
