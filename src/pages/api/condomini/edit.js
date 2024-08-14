@@ -20,8 +20,21 @@ export default async (req, res) => {
       const db = client.db('Users_form_registration');
       const result = await db.collection('condomini').findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } },
-        { returnOriginal: false }
+        {
+          $set: {
+            name,
+            surname,
+            phone,
+            email,
+            edificio,
+            scala,
+            garage,
+            postoAuto,
+            proprietario,
+            affittuario
+          }
+        },
+        { returnDocument: 'after' } // Utilizza returnDocument: 'after' per restituire il documento aggiornato
       );
 
       if (!result.value) {
@@ -30,6 +43,7 @@ export default async (req, res) => {
 
       return res.status(200).json(result.value);
     } catch (error) {
+      console.error('Failed to update condomino:', error);
       return res.status(500).json({ message: 'Failed to update condomino', error });
     }
   } else {

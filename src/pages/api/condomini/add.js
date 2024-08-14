@@ -30,8 +30,14 @@ export default async (req, res) => {
     try {
       const client = await clientPromise;
       const db = client.db('Users_form_registration');
+      
+      // Inserisci il nuovo documento
       const result = await db.collection('condomini').insertOne(newCondomino);
-      return res.status(201).json(result.ops[0]);
+
+      // Trova il documento appena inserito
+      const insertedCondomino = await db.collection('condomini').findOne({ _id: result.insertedId });
+
+      return res.status(201).json(insertedCondomino);
     } catch (error) {
       return res.status(500).json({ message: 'Failed to add condomino', error });
     }

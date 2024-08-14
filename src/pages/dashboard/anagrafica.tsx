@@ -30,7 +30,7 @@ const CondominiAnagrafica = () => {
   }, []);
 
   const addOrUpdateCondomino = async () => {
-    const url = editingId ? `/api/condomini/update?id=${editingId}` : '/api/condomini/add';
+    const url = editingId ? `/api/condomini/edit?id=${editingId}` : '/api/condomini/add';
     const method = editingId ? 'PUT' : 'POST';
 
     const response = await fetch(url, {
@@ -49,18 +49,7 @@ const CondominiAnagrafica = () => {
       } else {
         setCondomini([...condomini, savedCondomino]);
       }
-      setNewCondomino({ 
-        name: '', 
-        surname: '', 
-        phone: '', 
-        email: '', 
-        edificio: '',
-        scala:'',
-        garage:'',
-        postoAuto:'',
-        proprietario:'',
-        affittuario:'' 
-      });
+      resetForm();
     } else {
       console.error('Errore nella creazione o modifica del condomino');
     }
@@ -83,6 +72,22 @@ const CondominiAnagrafica = () => {
     setEditingId(condomino._id);
   };
 
+  const resetForm = () => {
+    setNewCondomino({
+      name: '',
+      surname: '',
+      phone: '',
+      email: '',
+      edificio: '',
+      scala:'',
+      garage:'',
+      postoAuto:'',
+      proprietario:'',
+      affittuario:''
+    });
+    setEditingId(null);
+  };
+
   return (
     <Dashboard>
       <div className="grid grid-cols-1 gap-6 p-4">
@@ -90,82 +95,94 @@ const CondominiAnagrafica = () => {
           <h2 className="text-2xl font-bold mb-4">
             {editingId ? 'Modifica Condomino' : 'Aggiungi Condomino'}
           </h2>
-          <input
-            type="text"
-            value={newCondomino.name}
-            onChange={(e) => setNewCondomino({ ...newCondomino, name: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Nome"
-          />
-          <input
-            type="text"
-            value={newCondomino.surname}
-            onChange={(e) => setNewCondomino({ ...newCondomino, surname: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Cognome"
-          />
-          <input
-            type="text"
-            value={newCondomino.phone}
-            onChange={(e) => setNewCondomino({ ...newCondomino, phone: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Telefono"
-          />
-          <input
-            type="email"
-            value={newCondomino.email}
-            onChange={(e) => setNewCondomino({ ...newCondomino, email: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Email"
-          />
-          <input
-            type="text"
-            value={newCondomino.edificio}
-            onChange={(e) => setNewCondomino({ ...newCondomino, edificio: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Edificio"
-          />
-          <input
-            type="text"
-            value={newCondomino.scala}
-            onChange={(e) => setNewCondomino({ ...newCondomino, scala: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Scala"
-          />
-          <input
-            type="text"
-            value={newCondomino.garage}
-            onChange={(e) => setNewCondomino({ ...newCondomino, garage: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Garage"
-          />
-          <input
-            type="text"
-            value={newCondomino.postoAuto}
-            onChange={(e) => setNewCondomino({ ...newCondomino, postoAuto: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Posto Auto"
-          />
-          <input
-            type="text"
-            value={newCondomino.proprietario}
-            onChange={(e) => setNewCondomino({ ...newCondomino, proprietario: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Proprietario"
-          />
-          <input
-            type="text"
-            value={newCondomino.affittuario}
-            onChange={(e) => setNewCondomino({ ...newCondomino, affittuario: e.target.value })}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Affittuario"
-          />
-          <button
-            onClick={addOrUpdateCondomino}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            {editingId ? 'Salva Modifiche' : 'Aggiungi Condomino'}
-          </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              value={newCondomino.name}
+              onChange={(e) => setNewCondomino({ ...newCondomino, name: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Nome"
+            />
+            <input
+              type="text"
+              value={newCondomino.surname}
+              onChange={(e) => setNewCondomino({ ...newCondomino, surname: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Cognome"
+            />
+            <input
+              type="text"
+              value={newCondomino.phone}
+              onChange={(e) => setNewCondomino({ ...newCondomino, phone: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Telefono"
+            />
+            <input
+              type="email"
+              value={newCondomino.email}
+              onChange={(e) => setNewCondomino({ ...newCondomino, email: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Email"
+            />
+            <input
+              type="text"
+              value={newCondomino.edificio}
+              onChange={(e) => setNewCondomino({ ...newCondomino, edificio: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Edificio"
+            />
+            <input
+              type="text"
+              value={newCondomino.scala}
+              onChange={(e) => setNewCondomino({ ...newCondomino, scala: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Scala"
+            />
+            <input
+              type="text"
+              value={newCondomino.garage}
+              onChange={(e) => setNewCondomino({ ...newCondomino, garage: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Garage"
+            />
+            <input
+              type="text"
+              value={newCondomino.postoAuto}
+              onChange={(e) => setNewCondomino({ ...newCondomino, postoAuto: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Posto Auto"
+            />
+            <input
+              type="text"
+              value={newCondomino.proprietario}
+              onChange={(e) => setNewCondomino({ ...newCondomino, proprietario: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Proprietario"
+            />
+            <input
+              type="text"
+              value={newCondomino.affittuario}
+              onChange={(e) => setNewCondomino({ ...newCondomino, affittuario: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Affittuario"
+            />
+          </div>
+          <div className="flex space-x-4 mt-4">
+            <button
+              onClick={addOrUpdateCondomino}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              {editingId ? 'Salva Modifiche' : 'Aggiungi Condomino'}
+            </button>
+            {editingId && (
+              <button
+                onClick={resetForm}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Annulla
+              </button>
+            )}
+          </div>
           <h2 className="text-2xl font-bold mt-6">Lista Condomini</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full bg-[#2D3748] text-white">
