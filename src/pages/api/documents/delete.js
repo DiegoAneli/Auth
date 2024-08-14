@@ -5,7 +5,7 @@ import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 export default async (req, res) => {
-    const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await unstable_getServerSession(req, res, authOptions);
   
   if (!session || !session.user || !session.user.email) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -22,17 +22,16 @@ export default async (req, res) => {
       const client = await clientPromise;
       const db = client.db('Users_form_registration');
 
-      const result = await db.collection('users').updateOne(
-        { email: session.user.email },
-        { $pull: { documents: { _id: new ObjectId(id) } } }
-      );
+      // Modifica per eliminare dalla collezione "documents"
+      const result = await db.collection('documents').deleteOne({ _id: new ObjectId(id) });
 
-      if (result.modifiedCount === 0) {
+      if (result.deletedCount === 0) {
         return res.status(404).json({ message: 'Document not found or failed to delete' });
       }
 
       return res.status(200).json({ message: 'Document deleted successfully' });
     } catch (error) {
+      console.error('Errore durante l\'eliminazione del documento:', error);
       return res.status(500).json({ message: 'Failed to delete document', error });
     }
   } else {

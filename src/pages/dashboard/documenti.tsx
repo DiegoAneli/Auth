@@ -90,6 +90,9 @@ const Section1 = () => {
                     Estensione
                   </th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Caricato da
+                  </th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Azioni
                   </th>
                 </tr>
@@ -111,6 +114,9 @@ const Section1 = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                       {document.extension}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
+                      {document.uploadedBy}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                       <button

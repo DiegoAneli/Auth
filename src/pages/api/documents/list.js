@@ -6,7 +6,7 @@ import clientPromise from '../../../lib/mongodb';
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
 
-   if (req.method !== 'GET') {
+  if (req.method !== 'GET') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
@@ -14,11 +14,12 @@ export default async (req, res) => {
     const client = await clientPromise;
     const db = client.db('Users_form_registration');
 
-    const condomini = await db.collection('condomini').find().toArray();
+    // Supponendo che i documenti siano memorizzati nella collezione 'documents'
+    const documents = await db.collection('documents').find().toArray();
 
-    res.status(200).json(condomini);
+    res.status(200).json(documents);
   } catch (error) {
-    console.error('Errore nel recupero dei condomini:', error);
-    res.status(500).json({ message: 'Errore nel recupero dei condomini' });
+    console.error('Errore nel recupero dei documenti:', error);
+    res.status(500).json({ message: 'Errore nel recupero dei documenti' });
   }
 };
