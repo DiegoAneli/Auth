@@ -15,7 +15,14 @@ const CondominiAnagrafica = () => {
     garage:'',
     postoAuto:'',
     proprietario:'',
-    affittuario:''
+    affittuario:'',
+    dataInizioProprieta: '',
+    fineProprieta: '',
+    nomeAffittuario: '',
+    giardino: '',
+    inVendita: '',
+    millesimi: '',
+    metriQuadri: ''
   });
   const [editingId, setEditingId] = useState(null); // Stato per gestire l'ID del condomino in modifica
 
@@ -67,7 +74,7 @@ const CondominiAnagrafica = () => {
     }
   };
 
-  const editCondomino = (condomino: SetStateAction<{ name: string; surname: string; phone: string; email: string; edificio: string; scala: string; garage: string; postoAuto: string; proprietario: string; affittuario: string; }>) => {
+  const editCondomino = (condomino: SetStateAction<typeof newCondomino>) => {
     setNewCondomino(condomino);
     setEditingId(condomino._id);
   };
@@ -83,7 +90,14 @@ const CondominiAnagrafica = () => {
       garage:'',
       postoAuto:'',
       proprietario:'',
-      affittuario:''
+      affittuario:'',
+      dataInizioProprieta: '',
+      fineProprieta: '',
+      nomeAffittuario: '',
+      giardino: '',
+      inVendita: '',
+      millesimi: '',
+      metriQuadri: ''
     });
     setEditingId(null);
   };
@@ -166,6 +180,55 @@ const CondominiAnagrafica = () => {
               className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
               placeholder="Affittuario"
             />
+            <input
+              type="date"
+              value={newCondomino.dataInizioProprieta}
+              onChange={(e) => setNewCondomino({ ...newCondomino, dataInizioProprieta: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Data Inizio Proprietà"
+            />
+            <input
+              type="date"
+              value={newCondomino.fineProprieta}
+              onChange={(e) => setNewCondomino({ ...newCondomino, fineProprieta: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Fine Proprietà"
+            />
+            <input
+              type="text"
+              value={newCondomino.nomeAffittuario}
+              onChange={(e) => setNewCondomino({ ...newCondomino, nomeAffittuario: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Nome Affittuario"
+            />
+            <input
+              type="text"
+              value={newCondomino.giardino}
+              onChange={(e) => setNewCondomino({ ...newCondomino, giardino: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Giardino"
+            />
+            <input
+              type="text"
+              value={newCondomino.inVendita}
+              onChange={(e) => setNewCondomino({ ...newCondomino, inVendita: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="In Vendita"
+            />
+            <input
+              type="number"
+              value={newCondomino.millesimi}
+              onChange={(e) => setNewCondomino({ ...newCondomino, millesimi: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Millesimi"
+            />
+            <input
+              type="number"
+              value={newCondomino.metriQuadri}
+              onChange={(e) => setNewCondomino({ ...newCondomino, metriQuadri: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Metri Quadri"
+            />
           </div>
           <div className="flex space-x-4 mt-4">
             <button
@@ -188,75 +251,46 @@ const CondominiAnagrafica = () => {
             <table className="min-w-full bg-[#2D3748] text-white">
               <thead>
                 <tr>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Nome
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Cognome
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Telefono
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Edificio
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Scala
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Garage
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Posto Auto
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Proprietario
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Affittuario
-                  </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Azioni
-                  </th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Nome</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cognome</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Telefono</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Edificio</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Scala</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Garage</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Posto Auto</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Proprietario</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Affittuario</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Data Inizio Proprietà</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Fine Proprietà</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Nome Affittuario</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Giardino</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">In Vendita</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Millesimi</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Metri Quadri</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Azioni</th>
                 </tr>
               </thead>
               <tbody>
                 {condomini.map((condomino, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.surname}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.phone}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.email}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.edificio}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.scala}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.garage}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.postoAuto}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.proprietario}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {condomino.affittuario}
-                    </td>
-                    
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.surname}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.phone}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.email}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.edificio}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.scala}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.garage}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.postoAuto}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.proprietario}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.affittuario}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.dataInizioProprieta}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.fineProprieta}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.nomeAffittuario}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.giardino}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.inVendita}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.millesimi}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.metriQuadri}</td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                       <button
                         onClick={() => editCondomino(condomino)}
