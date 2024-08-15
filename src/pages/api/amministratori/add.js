@@ -10,19 +10,21 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { name, surname, phone, email, ragioneSociale, partitaIva, codiceFiscale, recapiti, numeroIscrizioneAlbo, assicurazione, specializzazioni, esperienza} = req.body;
 
-    const newCondomino = {
-      name,
-      surname,
-      phone,
-      email,
-      edificio,
-      scala,
-      garage,
-      postoAuto,
-      proprietario,
-      affittuario,
+    const newAmmninistratore = {
+      name, 
+      surname, 
+      phone, 
+      email, 
+      ragioneSociale, 
+      partitaIva, 
+      codiceFiscale, 
+      recapiti, 
+      numeroIscrizioneAlbo, 
+      assicurazione, 
+      specializzazioni, 
+      esperienza,
       createdAt: new Date(),
     };
 
@@ -31,14 +33,14 @@ export default async (req, res) => {
       const db = client.db('Users_form_registration');
       
       // Inserisci il nuovo documento
-      const result = await db.collection('condomini').insertOne(newCondomino);
+      const result = await db.collection('amministratori').insertOne(newAmmninistratore);
 
       // Trova il documento appena inserito
-      const insertedCondomino = await db.collection('condomini').findOne({ _id: result.insertedId });
+      const insertedAmministratore = await db.collection('amministratori').findOne({ _id: result.insertedId });
 
-      return res.status(201).json(insertedCondomino);
+      return res.status(201).json(insertedAmministratore);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to add condomino', error });
+      return res.status(500).json({ message: 'Failed to add amministratore', error });
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
