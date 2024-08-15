@@ -10,19 +10,30 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { edificio, scala, piano, balcone, garage, postoAuto, numeroCatastale, descrizione, superficie, numeroVani, raffreddamento, statoManutenzione, allaccioGas, induzione, sky, allaccioInternet, numeroBagni, giardino, cantina, inVendita, inAffitto } = req.body;
 
-    const newCondomino = {
-      name,
-      surname,
-      phone,
-      email,
-      edificio,
-      scala,
-      garage,
-      postoAuto,
-      proprietario,
-      affittuario,
+    const newProprieta = {
+      edificio, 
+      scala, 
+      piano, 
+      balcone, 
+      garage, 
+      postoAuto, 
+      numeroCatastale, 
+      descrizione, 
+      superficie, 
+      numeroVani, 
+      raffreddamento, 
+      statoManutenzione, 
+      allaccioGas, 
+      induzione, 
+      sky, 
+      allaccioInternet, 
+      numeroBagni, 
+      giardino, 
+      cantina, 
+      inVendita, 
+      inAffitto,
       createdAt: new Date(),
     };
 
@@ -31,14 +42,14 @@ export default async (req, res) => {
       const db = client.db('Users_form_registration');
       
       // Inserisci il nuovo documento
-      const result = await db.collection('condomini').insertOne(newCondomino);
+      const result = await db.collection('proprietas').insertOne(newProprieta);
 
       // Trova il documento appena inserito
-      const insertedCondomino = await db.collection('condomini').findOne({ _id: result.insertedId });
+      const insertedProprieta = await db.collection('proprietas').findOne({ _id: result.insertedId });
 
-      return res.status(201).json(insertedCondomino);
+      return res.status(201).json(insertedProprieta);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to add condomino', error });
+      return res.status(500).json({ message: 'Failed to add proprietà', error });
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
