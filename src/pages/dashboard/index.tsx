@@ -55,6 +55,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               <CalendarIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Anagrafica</span>}
             </Link>
+            <Link href="/dashboard/proprieta" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CalendarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Proprietà</span>}
+            </Link>
             <Link href="/dashboard/progetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Progetti</span>}
