@@ -10,9 +10,9 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { name, surname, codiceFiscale, phone, email, edificio, scala, garage, postoAuto, canoneMensile, dataInizioContratto, dataFineContratto, depositoCauzionale} = req.body;
 
-    const newCondomino = {
+    const newAffittuario = {
       name,
       surname,
       phone,
@@ -21,8 +21,12 @@ export default async (req, res) => {
       scala,
       garage,
       postoAuto,
-      proprietario,
-      affittuario,
+      codiceFiscale,
+      canoneMensile,
+      dataInizioContratto,
+      dataFineContratto,
+      depositoCauzionale,
+
       createdAt: new Date(),
     };
 
@@ -31,14 +35,14 @@ export default async (req, res) => {
       const db = client.db('Users_form_registration');
       
       // Inserisci il nuovo documento
-      const result = await db.collection('condomini').insertOne(newCondomino);
+      const result = await db.collection('affittuari').insertOne(newAffittuario);
 
       // Trova il documento appena inserito
-      const insertedCondomino = await db.collection('condomini').findOne({ _id: result.insertedId });
+      const insertedAffittuario = await db.collection('affittuari').findOne({ _id: result.insertedId });
 
-      return res.status(201).json(insertedCondomino);
+      return res.status(201).json(insertedAffittuario);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to add condomino', error });
+      return res.status(500).json({ message: 'Failed to add affittuario', error });
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
