@@ -14,11 +14,11 @@ export default async (req, res) => {
     const client = await clientPromise;
     const db = client.db('Users_form_registration');
 
-    const condomini = await db.collection('condomini').find().toArray();
+    const aziende = await db.collection('aziende').find().toArray();
 
-    res.status(200).json(condomini);
+    res.status(200).json(aziende);
   } catch (error) {
-    console.error('Errore nel recupero dei condomini:', error);
-    res.status(500).json({ message: 'Errore nel recupero dei condomini' });
+    console.error('Errore nel recupero delle aziende:', error);
+    res.status(500).json({ message: 'Errore nel recupero delle aziende' });
   }
 };

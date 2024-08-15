@@ -10,19 +10,20 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { name, surname, phone, email, settore, tipologiaContratto, partitaIva, targaAuto, nominativoTecnico, numeroInterventi  } = req.body;
 
-    const newCondomino = {
+    const newAzienda = {
       name,
       surname,
       phone,
       email,
-      edificio,
-      scala,
-      garage,
-      postoAuto,
-      proprietario,
-      affittuario,
+      settore, 
+      tipologiaContratto, 
+      partitaIva, 
+      targaAuto, 
+      nominativoTecnico, 
+      numeroInterventi,
+      
       createdAt: new Date(),
     };
 
@@ -31,14 +32,14 @@ export default async (req, res) => {
       const db = client.db('Users_form_registration');
       
       // Inserisci il nuovo documento
-      const result = await db.collection('condomini').insertOne(newCondomino);
+      const result = await db.collection('aziende').insertOne(newAzienda);
 
       // Trova il documento appena inserito
-      const insertedCondomino = await db.collection('condomini').findOne({ _id: result.insertedId });
+      const insertedAzienda = await db.collection('aziende').findOne({ _id: result.insertedId });
 
-      return res.status(201).json(insertedCondomino);
+      return res.status(201).json(insertedAzienda);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to add condomino', error });
+      return res.status(500).json({ message: 'Failed to add azienda', error });
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
