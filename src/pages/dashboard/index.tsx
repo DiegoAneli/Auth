@@ -78,7 +78,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
             </Link>
             <Link href="/dashboard/documenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <DocumentArrowUpIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Documenti</span>}
+              {!isCollapsed && <span>Archivio Documenti</span>}
             </Link>
             <Link href="/dashboard/sondaggi" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ChatBubbleLeftRightIcon className="h-5 w-5 text-white" />
