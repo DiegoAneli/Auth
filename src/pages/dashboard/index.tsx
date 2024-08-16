@@ -176,6 +176,11 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                   <p>Visualizza le tue spese.</p>
                   <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
                 </Link>
+                <Link href="/dashboard/rifiutipulizie" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Rifiuti e Pulizia</h2>
+                  <p>Visualizza i giorni di ritiro rifiuti e i giorni di pulizia.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
                 <Link href="/dashboard/regolamento" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
                   <h2 className="text-2xl font-bold mb-4">Regolamento Condominio</h2>
                   <p>Visualizza il regolamento per una buona civiltà.</p>
@@ -184,6 +189,17 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                 <Link href="/dashboard/mappa" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
                   <h2 className="text-2xl font-bold mb-4">Mappa e Servizi Comuni</h2>
                   <p>Visualizza i servizi e la cartina del condominio.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
+                <Link href="/dashboard/mercatino" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Mercatino</h2>
+                  <p>Visualizza chi vende oggetti o vende e affitta casa.</p>
+                  <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
+                </Link>
+                
+                <Link href="/dashboard/candidature" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                  <h2 className="text-2xl font-bold mb-4">Candidatura</h2>
+                  <p>Visualizza le candidature per offrire servizio al condominio</p>
                   <p className="text-green-500 mt-2">+10% rispetto al mese scorso</p>
                 </Link>
                 <Link href="/dashboard/emergenza" className="block bg-[#2D3748] text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
