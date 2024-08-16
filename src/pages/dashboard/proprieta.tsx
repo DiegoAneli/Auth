@@ -31,6 +31,7 @@ const ProprietaAnagrafica = () => {
     millesimi: ''
   });
   const [editingId, setEditingId] = useState(null); // Stato per gestire l'ID del condomino in modifica
+  const [isExpanded, setIsExpanded] = useState(true); // Stato per controllare l'espansione della sezione
 
   useEffect(() => {
     const fetchProprietas = async () => {
@@ -83,6 +84,9 @@ const ProprietaAnagrafica = () => {
   const editProprieta = (proprieta: SetStateAction<typeof newProprieta>) => {
     setNewProprieta(proprieta);
     setEditingId(proprieta._id);
+    if (!isExpanded) {
+      setIsExpanded(true); // Espandi la sezione se è ridotta
+    }
   };
 
   const resetForm = () => {
@@ -118,165 +122,175 @@ const ProprietaAnagrafica = () => {
     <Dashboard>
       <div className="grid grid-cols-1 gap-6 p-4">
         <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-4">
-            {editingId ? 'Modifica Proprietà' : 'Aggiungi Proprietà'}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              value={newProprieta.edificio}
-              onChange={(e) => setNewProprieta({ ...newProprieta, edificio: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Edificio"
-            />
-            <input
-              type="text"
-              value={newProprieta.scala}
-              onChange={(e) => setNewProprieta({ ...newProprieta, scala: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Scala"
-            />
-            <input
-              type="text"
-              value={newProprieta.piano}
-              onChange={(e) => setNewProprieta({ ...newProprieta, piano: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Piano"
-            />
-            <input
-              type="text"
-              value={newProprieta.balcone}
-              onChange={(e) => setNewProprieta({ ...newProprieta, balcone: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Balcone"
-            />
-            <input
-              type="text"
-              value={newProprieta.garage}
-              onChange={(e) => setNewProprieta({ ...newProprieta, garage: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Garage"
-            />
-            <input
-              type="text"
-              value={newProprieta.postoAuto}
-              onChange={(e) => setNewProprieta({ ...newProprieta, postoAuto: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Posto Auto"
-            />
-            <input
-              type="text"
-              value={newProprieta.numeroCatastale}
-              onChange={(e) => setNewProprieta({ ...newProprieta, numeroCatastale: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Numero Catastale"
-            />
-            <input
-              type="label"
-              value={newProprieta.descrizione}
-              onChange={(e) => setNewProprieta({ ...newProprieta, descrizione: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Descrizione"
-            />
-            <input
-              type="number"
-              value={newProprieta.superficie}
-              onChange={(e) => setNewProprieta({ ...newProprieta, superficie: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Superficie Mq"
-            />
-            <input
-              type="number"
-              value={newProprieta.numeroVani}
-              onChange={(e) => setNewProprieta({ ...newProprieta, numeroVani: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Numero Vani"
-            />
-            <input
-              type="date"
-              value={newProprieta.dataInizioProprieta}
-              onChange={(e) => setNewProprieta({ ...newProprieta, dataInizioProprieta: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Data Inizio Proprietà"
-            />
-            <input
-              type="date"
-              value={newProprieta.fineProprieta}
-              onChange={(e) => setNewProprieta({ ...newProprieta, fineProprieta: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Data Fine Proprietà"
-            />
-            <input
-              type="text"
-              value={newProprieta.raffreddamento}
-              onChange={(e) => setNewProprieta({ ...newProprieta, raffreddamento: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Raffreddamento"
-            />
-            <input
-              type="text"
-              value={newProprieta.giardino}
-              onChange={(e) => setNewProprieta({ ...newProprieta, giardino: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Giardino"
-            />
-            <input
-              type="text"
-              value={newProprieta.inVendita}
-              onChange={(e) => setNewProprieta({ ...newProprieta, inVendita: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="In Vendita"
-            />
-            <input
-              type="number"
-              value={newProprieta.millesimi}
-              onChange={(e) => setNewProprieta({ ...newProprieta, millesimi: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Millesimi"
-            />
-            <input
-              type="text"
-              value={newProprieta.statoManutenzione}
-              onChange={(e) => setNewProprieta({ ...newProprieta, statoManutenzione: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Stato di Manutenzione"
-            />
-            <input
-              type="text"
-              value={newProprieta.allaccioGas}
-              onChange={(e) => setNewProprieta({ ...newProprieta, allaccioGas: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Allaccio Gas"
-            />
-            <input
-              type="text"
-              value={newProprieta.allaccioInternet}
-              onChange={(e) => setNewProprieta({ ...newProprieta, allaccioInternet: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Allaccio Internet"
-            />
-            <input
-              type="text"
-              value={newProprieta.induzione}
-              onChange={(e) => setNewProprieta({ ...newProprieta, induzione: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Cucina ad Induzione"
-            />
-            <input
-              type="text"
-              value={newProprieta.sky}
-              onChange={(e) => setNewProprieta({ ...newProprieta, sky: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Sky"
-            />
-            <input
-              type="text"
-              value={newProprieta.inAffitto}
-              onChange={(e) => setNewProprieta({ ...newProprieta, inAffitto: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="In Affitto"
-            />
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">
+              {editingId ? 'Modifica Proprietà' : 'Aggiungi Proprietà'}
+            </h2>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              {isExpanded ? 'Riduci' : 'Espandi'}
+            </button>
           </div>
+          {isExpanded && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                value={newProprieta.edificio}
+                onChange={(e) => setNewProprieta({ ...newProprieta, edificio: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Edificio"
+              />
+              <input
+                type="text"
+                value={newProprieta.scala}
+                onChange={(e) => setNewProprieta({ ...newProprieta, scala: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Scala"
+              />
+              <input
+                type="text"
+                value={newProprieta.piano}
+                onChange={(e) => setNewProprieta({ ...newProprieta, piano: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Piano"
+              />
+              <input
+                type="text"
+                value={newProprieta.balcone}
+                onChange={(e) => setNewProprieta({ ...newProprieta, balcone: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Balcone"
+              />
+              <input
+                type="text"
+                value={newProprieta.garage}
+                onChange={(e) => setNewProprieta({ ...newProprieta, garage: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Garage"
+              />
+              <input
+                type="text"
+                value={newProprieta.postoAuto}
+                onChange={(e) => setNewProprieta({ ...newProprieta, postoAuto: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Posto Auto"
+              />
+              <input
+                type="text"
+                value={newProprieta.numeroCatastale}
+                onChange={(e) => setNewProprieta({ ...newProprieta, numeroCatastale: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Numero Catastale"
+              />
+              <input
+                type="text"
+                value={newProprieta.descrizione}
+                onChange={(e) => setNewProprieta({ ...newProprieta, descrizione: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Descrizione"
+              />
+              <input
+                type="number"
+                value={newProprieta.superficie}
+                onChange={(e) => setNewProprieta({ ...newProprieta, superficie: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Superficie Mq"
+              />
+              <input
+                type="number"
+                value={newProprieta.numeroVani}
+                onChange={(e) => setNewProprieta({ ...newProprieta, numeroVani: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Numero Vani"
+              />
+              <input
+                type="date"
+                value={newProprieta.dataInizioProprieta}
+                onChange={(e) => setNewProprieta({ ...newProprieta, dataInizioProprieta: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Data Inizio Proprietà"
+              />
+              <input
+                type="date"
+                value={newProprieta.fineProprieta}
+                onChange={(e) => setNewProprieta({ ...newProprieta, fineProprieta: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Data Fine Proprietà"
+              />
+              <input
+                type="text"
+                value={newProprieta.raffreddamento}
+                onChange={(e) => setNewProprieta({ ...newProprieta, raffreddamento: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Raffreddamento"
+              />
+              <input
+                type="text"
+                value={newProprieta.giardino}
+                onChange={(e) => setNewProprieta({ ...newProprieta, giardino: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Giardino"
+              />
+              <input
+                type="text"
+                value={newProprieta.inVendita}
+                onChange={(e) => setNewProprieta({ ...newProprieta, inVendita: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="In Vendita"
+              />
+              <input
+                type="number"
+                value={newProprieta.millesimi}
+                onChange={(e) => setNewProprieta({ ...newProprieta, millesimi: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Millesimi"
+              />
+              <input
+                type="text"
+                value={newProprieta.statoManutenzione}
+                onChange={(e) => setNewProprieta({ ...newProprieta, statoManutenzione: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Stato di Manutenzione"
+              />
+              <input
+                type="text"
+                value={newProprieta.allaccioGas}
+                onChange={(e) => setNewProprieta({ ...newProprieta, allaccioGas: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Allaccio Gas"
+              />
+              <input
+                type="text"
+                value={newProprieta.allaccioInternet}
+                onChange={(e) => setNewProprieta({ ...newProprieta, allaccioInternet: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Allaccio Internet"
+              />
+              <input
+                type="text"
+                value={newProprieta.induzione}
+                onChange={(e) => setNewProprieta({ ...newProprieta, induzione: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Cucina ad Induzione"
+              />
+              <input
+                type="text"
+                value={newProprieta.sky}
+                onChange={(e) => setNewProprieta({ ...newProprieta, sky: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Sky"
+              />
+              <input
+                type="text"
+                value={newProprieta.inAffitto}
+                onChange={(e) => setNewProprieta({ ...newProprieta, inAffitto: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="In Affitto"
+              />
+            </div>
+          )}
           <div className="flex space-x-4 mt-4">
             <button
               onClick={addOrUpdateProprieta}
