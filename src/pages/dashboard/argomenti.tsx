@@ -49,6 +49,52 @@ const ForumSection = () => {
     topic.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    if (date.toDateString() === today.toDateString()) {
+      return 'Oggi';
+    } else if (date.toDateString() === yesterday.toDateString()) {
+      return 'Ieri';
+    } else {
+      return date.toLocaleDateString();
+    }
+  };
+
+  const renderComments = () => {
+    let lastDate = null;
+
+    return selectedTopic.comments.map((comment, index) => {
+      const commentDate = new Date(comment.createdAt).toDateString();
+
+      const showDateSeparator = commentDate !== lastDate;
+      lastDate = commentDate;
+
+      return (
+        <div key={index}>
+          {showDateSeparator && (
+            <div className="text-center text-sm text-gray-400 mb-2">
+              {formatDate(comment.createdAt)}
+            </div>
+          )}
+          <div
+            className={`text-lg mt-2 ${comment.author === 'UtenteCorrente' ? 'text-right' : 'text-left'}`}
+          >
+            <span className="block text-sm text-gray-400">{comment.author} - {comment.createdAt}</span>
+            <span
+              className={`inline-block p-2 rounded-lg ${comment.author === 'UtenteCorrente' ? 'bg-blue-500' : 'bg-gray-500'}`}
+            >
+              {comment.text}
+            </span>
+          </div>
+        </div>
+      );
+    });
+  };
+
   return (
     <Dashboard>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-4 h-screen">
@@ -97,19 +143,7 @@ const ForumSection = () => {
           <div className="text-sm text-gray-400 mb-2">Creato da: {selectedTopic.author}</div>
           <div className="text-sm text-gray-400 mb-4">Creato il: {selectedTopic.createdAt}</div>
           <div className="flex-1 overflow-y-auto h-64 bg-gray-700 p-4 rounded mb-4">
-            {selectedTopic.comments.map((comment, index) => (
-              <div
-                key={index}
-                className={`text-lg mt-2 ${comment.author === 'UtenteCorrente' ? 'text-right' : 'text-left'}`}
-              >
-                <span className="block text-sm text-gray-400">{comment.author} - {comment.createdAt}</span>
-                <span
-                  className={`inline-block p-2 rounded-lg ${comment.author === 'UtenteCorrente' ? 'bg-blue-500' : 'bg-gray-500'}`}
-                >
-                  {comment.text}
-                </span>
-              </div>
-            ))}
+            {renderComments()}
           </div>
           <div className="flex items-center bg-gray-700 p-2 rounded mb-4">
             <input

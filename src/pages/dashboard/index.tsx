@@ -20,7 +20,8 @@ import {
   PhoneIcon,
   MapIcon,
   DocumentTextIcon,
-  WrenchIcon
+  WrenchIcon,
+  TrashIcon
 } from '@heroicons/react/24/outline';
 
 interface DashboardProps {
@@ -92,6 +93,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               <CurrencyDollarIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Spese</span>}
             </Link>
+            <Link href="/dashboard/rifiutipulizie" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <TrashIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Rifiuti e Pulizia</span>}
+            </Link>
             <Link href="/dashboard/regolamento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Regolamento</span>}
@@ -99,6 +104,14 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
             <Link href="/dashboard/mappa" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <MapIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Mappa e Servizi</span>}
+            </Link>
+            <Link href="/dashboard/mercatino" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <CurrencyDollarIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Mercatino</span>}
+            </Link>
+            <Link href="/dashboard/candidature" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+              <UserGroupIcon className="h-5 w-5 text-white" />
+              {!isCollapsed && <span>Candidatura</span>}
             </Link>
             <Link href="/dashboard/emergenza" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <PhoneIcon className="h-5 w-5 text-white" />
