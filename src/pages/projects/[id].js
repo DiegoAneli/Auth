@@ -137,7 +137,7 @@ const ProjectPage = () => {
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Crea Task</span>}
             </button>
-            <Link href="/dashboard/attivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            {/*<Link href="/dashboard/attivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <UserGroupIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Teams</span>}
             </Link>
@@ -156,7 +156,7 @@ const ProjectPage = () => {
             <Link href="/dashboard/calendario" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <CalendarIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Calendario</span>}
-            </Link>
+            </Link>*/}
           </nav>
         </div>
 

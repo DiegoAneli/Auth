@@ -18,7 +18,9 @@ import {
   CurrencyDollarIcon,
   UserGroupIcon,
   PhoneIcon,
-  MapIcon
+  MapIcon,
+  DocumentTextIcon,
+  WrenchIcon
 } from '@heroicons/react/24/outline';
 
 interface DashboardProps {
@@ -59,7 +61,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               {!isCollapsed && <span>Anagrafica</span>}
             </Link>
             <Link href="/dashboard/proprieta" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-              <DocumentIcon className="h-5 w-5 text-white" />
+              <DocumentTextIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Proprietà</span>}
             </Link>
             <Link href="/dashboard/progetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
@@ -67,7 +69,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               {!isCollapsed && <span>Progetti</span>}
             </Link>
             <Link href="/dashboard/interventi" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
-              <DocumentIcon className="h-5 w-5 text-white" />
+              <WrenchIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Interventi ed attività</span>}
             </Link>
             <Link href="/dashboard/argomenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
@@ -92,7 +94,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
             </Link>
             <Link href="/dashboard/regolamento" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Regolamento Condominio</span>}
+              {!isCollapsed && <span>Regolamento</span>}
             </Link>
             <Link href="/dashboard/mappa" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <MapIcon className="h-5 w-5 text-white" />

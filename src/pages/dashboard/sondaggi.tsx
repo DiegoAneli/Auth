@@ -3,60 +3,91 @@
 import { useState } from 'react';
 import Dashboard from './index';
 
-const Section1 = () => {
-  const [projects, setProjects] = useState([]);
-  const [newProjectName, setNewProjectName] = useState('');
+const ProposalsPage = () => {
+  const [proposals, setProposals] = useState([
+    { id: 1, text: 'Dovremmo ridurre il budget per il prossimo trimestre?', votes: { agree: 5, disagree: 3 } },
+    { id: 2, text: 'Implementare una politica di smart working permanente?', votes: { agree: 10, disagree: 2 } },
+  ]);
+  const [newProposal, setNewProposal] = useState('');
 
-  const addProject = async () => {
-    if (newProjectName.trim() !== '') {
-      const response = await fetch('/api/projects/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ projectName: newProjectName }),
-      });
-
-      if (response.ok) {
-        const newProject = await response.json();
-        setProjects([...projects, newProject]);
-        setNewProjectName('');
-      } else {
-        console.error('Errore nella creazione del progetto');
-      }
+  const addProposal = () => {
+    if (newProposal.trim() !== '') {
+      const newProp = {
+        id: proposals.length + 1,
+        text: newProposal,
+        votes: { agree: 0, disagree: 0 },
+      };
+      setProposals([...proposals, newProp]);
+      setNewProposal('');
     }
+  };
+
+  const vote = (id, type) => {
+    const updatedProposals = proposals.map(proposal => {
+      if (proposal.id === id) {
+        return {
+          ...proposal,
+          votes: {
+            ...proposal.votes,
+            [type]: proposal.votes[type] + 1,
+          },
+        };
+      }
+      return proposal;
+    });
+    setProposals(updatedProposals);
   };
 
   return (
     <Dashboard>
-      <div className="grid grid-cols-1 gap-6 p-4">
-        <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-4">Crea Nuovo Progetto</h2>
+      <div className="p-4 h-screen">
+        <h2 className="text-2xl font-bold mb-4">Proposte e Sondaggi</h2>
+
+        {/* Sezione per aggiungere una nuova proposta */}
+        <div className="bg-[#2D3748] text-white p-4 rounded-lg shadow-md mb-6">
           <input
             type="text"
-            value={newProjectName}
-            onChange={(e) => setNewProjectName(e.target.value)}
+            value={newProposal}
+            onChange={(e) => setNewProposal(e.target.value)}
             className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            placeholder="Nome del Progetto"
+            placeholder="Inserisci una nuova proposta"
           />
           <button
-            onClick={addProject}
+            onClick={addProposal}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Aggiungi Progetto
+            Aggiungi Proposta
           </button>
-          <h2 className="text-2xl font-bold mt-6">Progetti Attuali</h2>
-          <ul className="list-disc list-inside">
-            {projects.map((project, index) => (
-              <li key={index} className="text-lg mt-2">
-                {project.name}
-              </li>
-            ))}
-          </ul>
+        </div>
+
+        {/* Lista delle proposte e votazioni */}
+        <div className="space-y-4">
+          {proposals.map((proposal) => (
+            <div key={proposal.id} className="bg-[#1A202C] text-white p-4 rounded-lg shadow-md">
+              <div className="text-lg font-bold mb-2">{proposal.text}</div>
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => vote(proposal.id, 'agree')}
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  SI ({proposal.votes.agree})
+                </button>
+                <button
+                  onClick={() => vote(proposal.id, 'disagree')}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  NO ({proposal.votes.disagree})
+                </button>
+              </div>
+              <div className="mt-4 text-sm text-gray-400">
+                Risultati: {proposal.votes.agree} D'accordo, {proposal.votes.disagree} Non D'accordo
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </Dashboard>
   );
 };
 
-export default Section1;
+export default ProposalsPage;
