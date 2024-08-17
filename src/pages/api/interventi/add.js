@@ -10,15 +10,18 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { nome, dataPresumibileInizio, dataPresumibileFine, tipologia, azienda, costo } = req.body;
+    const { nome, dataInizio, dataFine, tipologia, azienda, costo, edificio, scala, tipoIntervento } = req.body;
 
     const newIntervento = {
       nome,
-      dataPresumibileInizio,
-      dataPresumibileFine,
+      dataInizio,
+      dataFine,
       tipologia,
       azienda,
       costo,
+      edificio,
+      scala,
+      tipoIntervento,
       createdAt: new Date(),
     };
 

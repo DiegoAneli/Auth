@@ -13,19 +13,7 @@ export default async (req, res) => {
   if (req.method === 'PUT') {
     const { id } = req.query;
     const { 
-      nome, 
-      dataPresumibileInizio, 
-      dataPresumibileFine, 
-      tipologia, 
-      azienda, 
-      costo,
-      edificio,
-      scala,
-      garage,
-      postoAuto,
-      proprietario,
-      affittuario,
-      tipoIntervento // Nuovo campo aggiunto per tipo di intervento
+      nome, dataInizio, dataFine, tipologia, azienda, costo, edificio, scala, tipoIntervento // Nuovo campo aggiunto per tipo di intervento
     } = req.body;
 
     try {
@@ -35,18 +23,14 @@ export default async (req, res) => {
         { _id: new ObjectId(id) },
         {
           $set: {
-            nome,
-            dataPresumibileInizio,
-            dataPresumibileFine,
-            tipologia,
-            azienda,
-            costo,
-            edificio,
-            scala,
-            garage,
-            postoAuto,
-            proprietario,
-            affittuario,
+            nome, 
+            dataInizio, 
+            dataFine, 
+            tipologia, 
+            azienda, 
+            costo, 
+            edificio, 
+            scala, 
             tipoIntervento // Aggiornamento con il tipo di intervento
           }
         },

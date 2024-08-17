@@ -7,8 +7,8 @@ const InterventiForm = () => {
   const [interventi, setInterventi] = useState([]);
   const [newIntervento, setNewIntervento] = useState({
     nome: '',
-    dataPresumibileInizio: '',
-    dataPresumibileFine: '',
+    dataInizio: '',
+    dataFine: '',
     tipologia: '',
     azienda: '',
     costo: '',
@@ -17,6 +17,7 @@ const InterventiForm = () => {
     tipoIntervento: '', // Sostituzione o riparazione
   });
   const [editingId, setEditingId] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false); // Stato per controllare l'espansione dei campi di input
 
   useEffect(() => {
     const fetchInterventi = async () => {
@@ -66,16 +67,19 @@ const InterventiForm = () => {
     }
   };
 
-  const editIntervento = (intervento: SetStateAction<{ nome: string; dataPresumibileInizio: string; dataPresumibileFine: string; tipologia: string; azienda: string; costo: string; edificio: string; scala: string; tipoIntervento: string; }>) => {
+  const editIntervento = (intervento: SetStateAction<typeof newIntervento>) => {
     setNewIntervento(intervento);
     setEditingId(intervento._id);
+    if (!isExpanded) {
+      setIsExpanded(true); // Espandi i campi se sono ridotti
+    }
   };
 
   const resetForm = () => {
     setNewIntervento({
       nome: '',
-      dataPresumibileInizio: '',
-      dataPresumibileFine: '',
+      dataInizio: '',
+      dataFine: '',
       tipologia: '',
       azienda: '',
       costo: '',
@@ -90,84 +94,94 @@ const InterventiForm = () => {
     <Dashboard>
       <div className="grid grid-cols-1 gap-6 p-4">
         <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-4">
-            {editingId ? 'Modifica Intervento' : 'Aggiungi Intervento'}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              value={newIntervento.nome}
-              onChange={(e) => setNewIntervento({ ...newIntervento, nome: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Nome Intervento"
-            />
-            <input
-              type="date"
-              value={newIntervento.dataPresumibileInizio}
-              onChange={(e) => setNewIntervento({ ...newIntervento, dataPresumibileInizio: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Data Inizio"
-              onFocus={(e) => (e.target.type = 'date')}
-              onBlur={(e) => (e.target.type = 'text')}
-            />
-            <input
-              type="date"
-              value={newIntervento.dataPresumibileFine}
-              onChange={(e) => setNewIntervento({ ...newIntervento, dataPresumibileFine: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Data Fine"
-              onFocus={(e) => (e.target.type = 'date')}
-              onBlur={(e) => (e.target.type = 'text')}
-            />
-            <input
-              type="text"
-              value={newIntervento.edificio}
-              onChange={(e) => setNewIntervento({ ...newIntervento, edificio: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Edificio"
-            />
-            <input
-              type="text"
-              value={newIntervento.scala}
-              onChange={(e) => setNewIntervento({ ...newIntervento, scala: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Scala"
-            />
-            <select
-              value={newIntervento.tipoIntervento}
-              onChange={(e) => setNewIntervento({ ...newIntervento, tipoIntervento: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">
+              {editingId ? 'Modifica Intervento' : 'Aggiungi Intervento'}
+            </h2>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              <option value="">Seleziona Tipo Intervento</option>
-              <option value="Sostituzione">Sostituzione</option>
-              <option value="Riparazione">Riparazione</option>
-            </select>
-            <select
-              value={newIntervento.tipologia}
-              onChange={(e) => setNewIntervento({ ...newIntervento, tipologia: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-            >
-              <option value="">Seleziona Tipologia</option>
-              <option value="Elettrico">Elettrico</option>
-              <option value="Idraulico">Idraulico</option>
-              <option value="Muratura">Muratura</option>
-              <option value="Altro">Altro</option>
-            </select>
-            <input
-              type="text"
-              value={newIntervento.azienda}
-              onChange={(e) => setNewIntervento({ ...newIntervento, azienda: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Azienda"
-            />
-            <input
-              type="number"
-              value={newIntervento.costo}
-              onChange={(e) => setNewIntervento({ ...newIntervento, costo: e.target.value })}
-              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Costo"
-            />
+              {isExpanded ? 'Riduci' : 'Espandi'}
+            </button>
           </div>
+          {isExpanded && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                value={newIntervento.nome}
+                onChange={(e) => setNewIntervento({ ...newIntervento, nome: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Nome Intervento"
+              />
+              <input
+                type="date"
+                value={newIntervento.dataInizio}
+                onChange={(e) => setNewIntervento({ ...newIntervento, dataInizio: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Data Inizio"
+                onFocus={(e) => (e.target.type = 'date')}
+                onBlur={(e) => (e.target.type = 'text')}
+              />
+              <input
+                type="date"
+                value={newIntervento.dataFine}
+                onChange={(e) => setNewIntervento({ ...newIntervento, dataFine: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Data Fine"
+                onFocus={(e) => (e.target.type = 'date')}
+                onBlur={(e) => (e.target.type = 'text')}
+              />
+              <input
+                type="text"
+                value={newIntervento.edificio}
+                onChange={(e) => setNewIntervento({ ...newIntervento, edificio: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Edificio"
+              />
+              <input
+                type="text"
+                value={newIntervento.scala}
+                onChange={(e) => setNewIntervento({ ...newIntervento, scala: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Scala"
+              />
+              <select
+                value={newIntervento.tipoIntervento}
+                onChange={(e) => setNewIntervento({ ...newIntervento, tipoIntervento: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              >
+                <option value="">Seleziona Tipo Intervento</option>
+                <option value="Sostituzione">Sostituzione</option>
+                <option value="Riparazione">Riparazione</option>
+              </select>
+              <select
+                value={newIntervento.tipologia}
+                onChange={(e) => setNewIntervento({ ...newIntervento, tipologia: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              >
+                <option value="">Seleziona Tipologia</option>
+                <option value="Elettrico">Elettrico</option>
+                <option value="Idraulico">Idraulico</option>
+                <option value="Muratura">Muratura</option>
+                <option value="Altro">Altro</option>
+              </select>
+              <input
+                type="text"
+                value={newIntervento.azienda}
+                onChange={(e) => setNewIntervento({ ...newIntervento, azienda: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Azienda"
+              />
+              <input
+                type="number"
+                value={newIntervento.costo}
+                onChange={(e) => setNewIntervento({ ...newIntervento, costo: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Costo"
+              />
+            </div>
+          )}
           <div className="flex space-x-4 mt-4">
             <button
               onClick={addOrUpdateIntervento}
@@ -193,10 +207,10 @@ const InterventiForm = () => {
                     Nome Intervento
                   </th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Data Presumibile Inizio
+                    Data Inizio
                   </th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                    Data Presumibile Fine
+                    Data Fine
                   </th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                     Edificio
@@ -228,10 +242,10 @@ const InterventiForm = () => {
                       {intervento.nome}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {intervento.dataPresumibileInizio}
+                      {intervento.dataInizio}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
-                      {intervento.dataPresumibileFine}
+                      {intervento.dataFine}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                       {intervento.edificio}
