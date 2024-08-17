@@ -10,9 +10,11 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { edificio, scala, piano, balcone, garage, postoAuto, numeroCatastale, descrizione, superficie, numeroVani, raffreddamento, statoManutenzione, allaccioGas, induzione, sky, allaccioInternet, numeroBagni, giardino, cantina, inVendita, inAffitto, dataInizioProprieta, fineProprieta, millesimi, } = req.body;
+    const { nome, cognome,edificio, scala, piano, balcone, garage, postoAuto, numeroCatastale, descrizione, superficie, numeroVani, raffreddamento, statoManutenzione, allaccioGas, induzione, sky, allaccioInternet, numeroBagni, giardino, cantina, inVendita, inAffitto, dataInizioProprieta, fineProprieta, millesimi, } = req.body;
 
     const newProprieta = {
+      nome, 
+      cognome,
       edificio, 
       scala, 
       piano, 

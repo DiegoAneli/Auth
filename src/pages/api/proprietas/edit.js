@@ -12,7 +12,7 @@ export default async (req, res) => {
 
   if (req.method === 'PUT') {
     const { id } = req.query;
-    const { edificio, scala, piano, balcone, garage, postoAuto, numeroCatastale, descrizione, superficie, numeroVani, raffreddamento, statoManutenzione, allaccioGas, induzione, sky, allaccioInternet, numeroBagni, giardino, cantina, inVendita, inAffitto } = req.body;
+    const { nome, cognome, edificio, scala, piano, balcone, garage, postoAuto, numeroCatastale, descrizione, superficie, numeroVani, raffreddamento, statoManutenzione, allaccioGas, induzione, sky, allaccioInternet, numeroBagni, giardino, cantina, inVendita, inAffitto } = req.body;
 
     try {
       const client = await clientPromise;
@@ -21,6 +21,8 @@ export default async (req, res) => {
         { _id: new ObjectId(id) },
         {
           $set: {
+            nome,
+            cognome,
             edificio, 
             scala, 
             piano, 
