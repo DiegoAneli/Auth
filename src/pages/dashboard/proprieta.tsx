@@ -5,6 +5,7 @@ import Dashboard from './index';
 
 const ProprietaAnagrafica = () => {
   const [proprietas, setProprietas] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(''); // Stato per il campo di ricerca
   const [newProprieta, setNewProprieta] = useState({
     nome: '',
     cognome: '',
@@ -32,8 +33,8 @@ const ProprietaAnagrafica = () => {
     inVendita: '',
     millesimi: ''
   });
-  const [editingId, setEditingId] = useState(null); // Stato per gestire l'ID del condomino in modifica
-  const [isExpanded, setIsExpanded] = useState(false); // Stato per controllare l'espansione della sezione
+  const [editingId, setEditingId] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const fetchProprietas = async () => {
@@ -61,7 +62,7 @@ const ProprietaAnagrafica = () => {
       const savedProprieta = await response.json();
       if (editingId) {
         setProprietas(proprietas.map(proprieta => (proprieta._id === editingId ? savedProprieta : proprieta)));
-        setEditingId(null); // Reset dello stato di modifica
+        setEditingId(null);
       } else {
         setProprietas([...proprietas, savedProprieta]);
       }
@@ -87,7 +88,7 @@ const ProprietaAnagrafica = () => {
     setNewProprieta(proprieta);
     setEditingId(proprieta._id);
     if (!isExpanded) {
-      setIsExpanded(true); // Espandi la sezione se è ridotta
+      setIsExpanded(true);
     }
   };
 
@@ -122,21 +123,26 @@ const ProprietaAnagrafica = () => {
     setEditingId(null);
   };
 
+  // Filtro per la ricerca
+  const filteredProprietas = proprietas.filter((proprieta) => 
+    Object.values(proprieta).some(value =>
+      String(value).toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  );
+
   return (
     <Dashboard>
       <style jsx>{`
         /* Personalizzazione dello scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
-          width: 6px; /* Spessore dello scrollbar */
+          width: 6px;
         }
-
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: #ffffff; /* Colore bianco */
-          border-radius: 8px; /* Bordo arrotondato */
+          background-color: #ffffff;
+          border-radius: 8px;
         }
-
         .custom-scrollbar::-webkit-scrollbar-track {
-          background-color: #2D3748; /* Colore di sfondo dello scrollbar */
+          background-color: #2D3748;
         }
       `}</style>
       <div className="grid grid-cols-1 gap-6 p-4">
@@ -154,7 +160,6 @@ const ProprietaAnagrafica = () => {
           </div>
           {isExpanded && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* I campi di input sono come definiti nel tuo codice */}
               <input
                 type="text"
                 value={newProprieta.nome}
@@ -251,7 +256,7 @@ const ProprietaAnagrafica = () => {
                 value={newProprieta.dataInizioProprieta}
                 onChange={(e) => setNewProprieta({ ...newProprieta, dataInizioProprieta: e.target.value })}
                 className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-                placeholder="Data Inzio Proprietà"
+                placeholder="Data Inizio Proprietà"
               />
               <input
                 type="date"
@@ -350,6 +355,18 @@ const ProprietaAnagrafica = () => {
               </button>
             )}
           </div>
+
+          {/* Campo di ricerca */}
+          <div className="my-4">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 bg-gray-700 text-white rounded"
+              placeholder="Cerca nella tabella..."
+            />
+          </div>
+
           <h2 className="text-2xl font-bold mt-6">Lista Proprietà</h2>
           <div className="overflow-x-auto custom-scrollbar">
             <table className="min-w-full bg-[#2D3748] text-white">
@@ -384,7 +401,7 @@ const ProprietaAnagrafica = () => {
                 </tr>
               </thead>
               <tbody>
-                {proprietas.map((proprieta, index) => (
+                {filteredProprietas.map((proprieta, index) => (
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.nome}</td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.cognome}</td>
