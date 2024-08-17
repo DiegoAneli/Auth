@@ -516,7 +516,7 @@ Per le cause tra soci [2247 c.c.] è competente il giudice del luogo dove ha sed
         <h2 className="text-2xl font-bold mb-4">Regolamento e Codice Civile</h2>
         
         {/* Sezione delle schede */}
-        <div className="mb-8">
+        <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('regulation')}
             className={`py-2 px-4 rounded-t-lg ${activeTab === 'regulation' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}

@@ -12,7 +12,7 @@ export default async (req, res) => {
 
   if (req.method === 'PUT') {
     const { id } = req.query;
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { name, surname, phone, email, edificio, scala, garage, postoAuto, animaliDomestici, allarmi, proprietario, affittuario, dataInizioProprieta, fineProprieta, giardino } = req.body;
 
     try {
       const client = await clientPromise;
@@ -29,8 +29,13 @@ export default async (req, res) => {
             scala,
             garage,
             postoAuto,
-            proprietario,
-            affittuario
+            animaliDomestici, 
+            allarmi, 
+            proprietario, 
+            affittuario, 
+            dataInizioProprieta, 
+            fineProprieta, 
+            giardino
           }
         },
         { returnDocument: 'after' } // Utilizza returnDocument: 'after' per restituire il documento aggiornato

@@ -10,7 +10,7 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, edificio, scala, garage, postoAuto, proprietario, affittuario } = req.body;
+    const { name, surname, phone, email, edificio, scala, garage, postoAuto, animaliDomestici, allarmi, proprietario, affittuario, dataInizioProprieta, fineProprieta, giardino } = req.body;
 
     const newCondomino = {
       name,
@@ -21,8 +21,13 @@ export default async (req, res) => {
       scala,
       garage,
       postoAuto,
+      animaliDomestici,
+      allarmi,
       proprietario,
       affittuario,
+      dataInizioProprieta,
+      fineProprieta,
+      giardino,
       createdAt: new Date(),
     };
 
