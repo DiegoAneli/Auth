@@ -6,6 +6,8 @@ import Dashboard from './index';
 const ProprietaAnagrafica = () => {
   const [proprietas, setProprietas] = useState([]);
   const [newProprieta, setNewProprieta] = useState({
+    nome:'',
+    cognome:'',
     edificio: '',
     scala: '',
     piano: '',
@@ -31,7 +33,7 @@ const ProprietaAnagrafica = () => {
     millesimi: ''
   });
   const [editingId, setEditingId] = useState(null); // Stato per gestire l'ID del condomino in modifica
-  const [isExpanded, setIsExpanded] = useState(true); // Stato per controllare l'espansione della sezione
+  const [isExpanded, setIsExpanded] = useState(false); // Stato per controllare l'espansione della sezione
 
   useEffect(() => {
     const fetchProprietas = async () => {
@@ -91,6 +93,8 @@ const ProprietaAnagrafica = () => {
 
   const resetForm = () => {
     setNewProprieta({
+      nome:'',
+      cognome:'',
       edificio: '',
       scala: '',
       piano: '',
@@ -135,6 +139,20 @@ const ProprietaAnagrafica = () => {
           </div>
           {isExpanded && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                value={newProprieta.nome}
+                onChange={(e) => setNewProprieta({ ...newProprieta, nome: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Nome"
+              />
+              <input
+                type="text"
+                value={newProprieta.cognome}
+                onChange={(e) => setNewProprieta({ ...newProprieta, cognome: e.target.value })}
+                className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                placeholder="Cognome"
+              />
               <input
                 type="text"
                 value={newProprieta.edificio}
@@ -312,6 +330,8 @@ const ProprietaAnagrafica = () => {
             <table className="min-w-full bg-[#2D3748] text-white">
               <thead>
                 <tr>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Nome</th>
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cognome</th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Edificio</th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Scala</th>
                   <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Piano</th>
@@ -340,6 +360,8 @@ const ProprietaAnagrafica = () => {
               <tbody>
                 {proprietas.map((proprieta, index) => (
                   <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.nome}</td>
+                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.cognome}</td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.edificio}</td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.scala}</td>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{proprieta.piano}</td>

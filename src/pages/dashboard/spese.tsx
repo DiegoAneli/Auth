@@ -81,13 +81,13 @@ const CondoExpensesPage = () => {
         {/* Tab selezionabili */}
         <div className="flex space-x-4 mb-8">
           <button
-            className={`py-2 px-4 rounded ${activeTab === 'condo' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-white'}`}
+            className={`py-2 px-4 rounded-t-lg ${activeTab === 'condo' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
             onClick={() => setActiveTab('condo')}
           >
             Spese Condominiali
           </button>
           <button
-            className={`py-2 px-4 rounded ${activeTab === 'personal' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-white'}`}
+            className={`py-2 px-4 rounded-t-lg ${activeTab === 'personal' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
             onClick={() => setActiveTab('personal')}
           >
             Spese Personali

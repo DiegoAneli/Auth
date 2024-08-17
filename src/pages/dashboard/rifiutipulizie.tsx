@@ -7,12 +7,10 @@ const CondoSchedulePage = () => {
   const [activeTab, setActiveTab] = useState('waste'); // Stato per gestire la scheda attiva
 
   const wasteSchedule = [
-    { day: 'Lunedì', wasteType: 'Organico' },
-    { day: 'Martedì', wasteType: 'Plastica' },
-    { day: 'Mercoledì', wasteType: 'Carta' },
-    { day: 'Giovedì', wasteType: 'Vetro' },
-    { day: 'Venerdì', wasteType: 'Organico' },
-    { day: 'Sabato', wasteType: 'Indifferenziato' },
+    { day: 'Ogni 2 settimane al Lunedì', wasteType: 'Carta' },
+    { day: 'Ogni Lunedì', wasteType: 'Indifferenziato' },
+    { day: 'Giovedì Mattina', wasteType: 'Plastica' },
+  
   ];
 
   const cleaningSchedule = [
@@ -26,16 +24,16 @@ const CondoSchedulePage = () => {
       <div className="p-4 h-screen">
         <h2 className="text-2xl font-bold mb-4">Programma del Condominio</h2>
         
-        <div className="flex mb-8">
+        <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('waste')}
-            className={`w-1/2 py-2 px-4 font-bold rounded-t-lg ${activeTab === 'waste' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+            className={`py-2 px-4 rounded-t-lg ${activeTab === 'waste' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
           >
             Ritiro Rifiuti
           </button>
           <button
             onClick={() => setActiveTab('cleaning')}
-            className={`w-1/2 py-2 px-4 font-bold rounded-t-lg ${activeTab === 'cleaning' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+            className={`py-2 px-4 rounded-t-lg ${activeTab === 'cleaning' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
           >
             Pulizia Scale
           </button>

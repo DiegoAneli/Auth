@@ -5,8 +5,8 @@ import Dashboard from './index';
 
 const ProposalsPage = () => {
   const [proposals, setProposals] = useState([
-    { id: 1, text: 'Dovremmo ridurre il budget per il prossimo trimestre?', votes: { agree: 5, disagree: 3 } },
-    { id: 2, text: 'Implementare una politica di smart working permanente?', votes: { agree: 10, disagree: 2 } },
+    { id: 1, text: 'Dovremmo cosiderare l installazione di una sbarra all entrata della corte?', votes: { agree: 5, disagree: 3 } },
+    { id: 2, text: 'Gli animali della corte sono fastidiosi nelle ore di riposo?', votes: { agree: 10, disagree: 2 } },
   ]);
   const [newProposal, setNewProposal] = useState('');
 
@@ -80,7 +80,7 @@ const ProposalsPage = () => {
                 </button>
               </div>
               <div className="mt-4 text-sm text-gray-400">
-                Risultati: {proposal.votes.agree} D'accordo, {proposal.votes.disagree} Non D'accordo
+                Risultati: {proposal.votes.agree} Positivi, {proposal.votes.disagree} Negativi
               </div>
             </div>
           ))}
