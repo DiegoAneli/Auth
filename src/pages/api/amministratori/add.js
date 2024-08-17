@@ -10,7 +10,7 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, surname, phone, email, ragioneSociale, partitaIva, codiceFiscale, recapiti, numeroIscrizioneAlbo, assicurazione, specializzazioni, esperienza} = req.body;
+    const { name, surname, phone, email, ragioneSociale, partitaIva, codiceFiscale, recapiti, numeroIscrizioneAlbo, assicurazione, specializzazioni, esperienza, dataInizioIncarico} = req.body;
 
     const newAmmninistratore = {
       name, 
@@ -25,6 +25,7 @@ export default async (req, res) => {
       assicurazione, 
       specializzazioni, 
       esperienza,
+      dataInizioIncarico,
       createdAt: new Date(),
     };
 

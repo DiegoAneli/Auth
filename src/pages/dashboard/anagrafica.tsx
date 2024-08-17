@@ -34,24 +34,39 @@ const CondominiAnagrafica = () => {
     email: '',
     edificio: '',
     scala: '',
-    dataInizioAffitto: '',
-    fineAffitto: '',
+    codiceFiscale:'',
+    garage:'', 
+    postoAuto:'', 
+    canoneMensile:'',
+    dataInizioContratto:'', 
+    dataFineContratto:'', 
+    depositoCauzionale:'',
   });
 
   const [newAmministratore, setNewAmministratore] = useState({
-    name: '',
-    surname: '',
-    phone: '',
-    email: '',
-    indirizzo: '',
-    dataInizioIncarico: '',
+    name:'', 
+    surname:'', 
+    phone:'', 
+    email:'', 
+    ragioneSociale:'', 
+    partitaIva:'', 
+    codiceFiscale:'', 
+    recapiti:'', 
+    numeroIscrizioneAlbo:'', 
+    assicurazione:'', 
+    specializzazioni:'', 
+    esperienza:'',
+    dataInizioIncarico:'',
   });
 
   const [newCondominio, setNewCondominio] = useState({
     name: '',
     indirizzo: '',
     numeroUnita: '',
-    amministratore: '',
+    referente:'', 
+    phone:'', 
+    email:'', 
+    tipologiaComplessoResidenziale:'',
   });
 
   const [editingId, setEditingId] = useState(null); // Stato per gestire l'ID dell'elemento in modifica
@@ -264,24 +279,39 @@ const CondominiAnagrafica = () => {
       email: '',
       edificio: '',
       scala: '',
-      dataInizioAffitto: '',
-      fineAffitto: '',
+      codiceFiscale:'',
+      garage:'', 
+      postoAuto:'', 
+      canoneMensile:'',
+      dataInizioContratto:'', 
+      dataFineContratto:'', 
+      depositoCauzionale:'',
     });
 
     setNewAmministratore({
-      name: '',
-      surname: '',
-      phone: '',
-      email: '',
-      indirizzo: '',
-      dataInizioIncarico: '',
+      name:'', 
+      surname:'', 
+      phone:'', 
+      email:'', 
+      ragioneSociale:'', 
+      partitaIva:'', 
+      codiceFiscale:'', 
+      recapiti:'', 
+      numeroIscrizioneAlbo:'', 
+      assicurazione:'', 
+      specializzazioni:'', 
+      esperienza:'',
+      dataInizioIncarico:''
     });
 
     setNewCondominio({
       name: '',
       indirizzo: '',
       numeroUnita: '',
-      amministratore: '',
+      referente:'', 
+      phone:'', 
+      email:'', 
+      tipologiaComplessoResidenziale:'',
     });
 
     setEditingId(null);
@@ -445,18 +475,53 @@ const CondominiAnagrafica = () => {
               placeholder="Scala"
             />
             <input
-              type="date"
-              value={newAffittuario.dataInizioAffitto}
-              onChange={(e) => setNewAffittuario({ ...newAffittuario, dataInizioAffitto: e.target.value })}
+              type="text"
+              value={newAffittuario.codiceFiscale}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, codiceFiscale: e.target.value })}
               className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Data Inizio Affitto"
+              placeholder="Codice Fiscale"
             />
             <input
-              type="date"
-              value={newAffittuario.fineAffitto}
-              onChange={(e) => setNewAffittuario({ ...newAffittuario, fineAffitto: e.target.value })}
+              type="text"
+              value={newAffittuario.garage}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, garage: e.target.value })}
               className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Fine Affitto"
+              placeholder="Garage"
+            />
+                 <input
+              type="text"
+              value={newAffittuario.postoAuto}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, postoAuto: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Posto Auto"
+            />
+                 <input
+              type="number"
+              value={newAffittuario.canoneMensile}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, canoneMensile: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Canone Mensile"
+            />
+                 <input
+              type="date"
+              value={newAffittuario.dataInizioContratto}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, dataInizioContratto: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Data Inizio Contratto"
+            />
+                 <input
+              type="date"
+              value={newAffittuario.dataFineContratto}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, dataFineContratto: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Data Fine Contratto"
+            />
+                 <input
+              type="number"
+              value={newAffittuario.depositoCauzionale}
+              onChange={(e) => setNewAffittuario({ ...newAffittuario, depositoCauzionale: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Deposito Cauzionale"
             />
           </>
         );
@@ -493,10 +558,59 @@ const CondominiAnagrafica = () => {
             />
             <input
               type="text"
-              value={newAmministratore.indirizzo}
-              onChange={(e) => setNewAmministratore({ ...newAmministratore, indirizzo: e.target.value })}
+              value={newAmministratore.ragioneSociale}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, ragioneSociale: e.target.value })}
               className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Indirizzo"
+              placeholder="Ragione Sociale"
+            />
+            <input
+              type="text"
+              value={newAmministratore.partitaIva}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, partitaIva: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Partita Iva"
+            />
+            <input
+              type="text"
+              value={newAmministratore.codiceFiscale}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, codiceFiscale: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Codice Fiscale"
+            />
+            <input
+              type="text"
+              value={newAmministratore.recapiti}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, recapiti: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Recapiti"
+            />
+            <input
+              type="number"
+              value={newAmministratore.numeroIscrizioneAlbo}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, numeroIscrizioneAlbo: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Numero Iscrizione Albo"
+            />
+            <input
+              type="text"
+              value={newAmministratore.assicurazione}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, assicurazione: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Assicurazione"
+            />
+            <input
+              type="text"
+              value={newAmministratore.specializzazioni}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, specializzazioni: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Specializzazioni"
+            />
+            <input
+              type="text"
+              value={newAmministratore.esperienza}
+              onChange={(e) => setNewAmministratore({ ...newAmministratore, esperienza: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Esperienza"
             />
             <input
               type="date"
@@ -533,10 +647,31 @@ const CondominiAnagrafica = () => {
             />
             <input
               type="text"
-              value={newCondominio.amministratore}
-              onChange={(e) => setNewCondominio({ ...newCondominio, amministratore: e.target.value })}
+              value={newCondominio.referente}
+              onChange={(e) => setNewCondominio({ ...newCondominio, referente: e.target.value })}
               className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Amministratore"
+              placeholder="Referente"
+            />
+            <input
+              type="number"
+              value={newCondominio.phone}
+              onChange={(e) => setNewCondominio({ ...newCondominio, phone: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Phone"
+            />
+            <input
+              type="email"
+              value={newCondominio.email}
+              onChange={(e) => setNewCondominio({ ...newCondominio, email: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Email"
+            />
+            <input
+              type="text"
+              value={newCondominio.tipologiaComplessoResidenziale}
+              onChange={(e) => setNewCondominio({ ...newCondominio, tipologiaComplessoResidenziale: e.target.value })}
+              className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+              placeholder="Tipologia Complesso Residenziale"
             />
           </>
         );
@@ -694,7 +829,7 @@ const CondominiAnagrafica = () => {
             )}
 
             {activeTab === 'affittuari' && (
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Affittuari</h2>
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
@@ -706,8 +841,13 @@ const CondominiAnagrafica = () => {
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Email</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Edificio</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Scala</th>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Data Inizio Affitto</th>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Fine Affitto</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Codice Fiscale</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Garage</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Posto Auto</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Canone Mensile</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Data Inizio Contratto</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Data Fine Contratto</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Deposito Cauzionale</th> 
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Azioni</th>
                     </tr>
                   </thead>
@@ -720,8 +860,14 @@ const CondominiAnagrafica = () => {
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.email}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.edificio}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.scala}</td>
-                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.dataInizioAffitto}</td>
-                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.fineAffitto}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.codiceFiscale}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.garage}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.postoAuto}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.canoneMensile}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.dataInizioContratto}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.dataFineContratto}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.depositoCauzionale}</td>
+
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                           <button
                             onClick={() => editEntity(affittuario)}
@@ -744,7 +890,7 @@ const CondominiAnagrafica = () => {
             )}
 
             {activeTab === 'amministratori' && (
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Amministratori</h2>
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
@@ -753,7 +899,14 @@ const CondominiAnagrafica = () => {
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cognome</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Telefono</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Email</th>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Indirizzo</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Ragione Sociale</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Partita Iva</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Codice Fiscale</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Recapiti</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Numero Iscrizione Albo</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Assicurazione</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Specializzazioni</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Esperienza</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Data Inizio Incarico</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Azioni</th>
                     </tr>
@@ -765,7 +918,14 @@ const CondominiAnagrafica = () => {
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.surname}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.phone}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.email}</td>
-                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.indirizzo}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.ragioneSociale}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.partitaIva}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.codiceFiscale}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.recapiti}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.numeroIscrizioneAlbo}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.assicurazione}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.specializzazioni}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.esperienza}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.dataInizioIncarico}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                           <button
@@ -789,7 +949,7 @@ const CondominiAnagrafica = () => {
             )}
 
             {activeTab === 'condominii' && (
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Condominii</h2>
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
@@ -797,7 +957,10 @@ const CondominiAnagrafica = () => {
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Nome</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Indirizzo</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Numero Unità</th>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Amministratore</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Referente</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Telefono</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Email</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Tipologia Complesso Residenziale</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Azioni</th>
                     </tr>
                   </thead>
@@ -807,7 +970,10 @@ const CondominiAnagrafica = () => {
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.indirizzo}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.numeroUnita}</td>
-                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.amministratore}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.referente}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.phone}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.email}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.tipologiaComplessoResidenziale}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                           <button
                             onClick={() => editEntity(condominio)}

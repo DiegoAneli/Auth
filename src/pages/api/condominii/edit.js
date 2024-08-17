@@ -12,7 +12,7 @@ export default async (req, res) => {
 
   if (req.method === 'PUT') {
     const { id } = req.query;
-    const { name, referente, phone, email, tipologiaComplessoResidenziale, recapiti } = req.body;
+    const {name, indirizzo,referente, phone, email, tipologiaComplessoResidenziale, numeroUnita } = req.body;
 
     try {
       const client = await clientPromise;
@@ -22,11 +22,12 @@ export default async (req, res) => {
         {
           $set: {
             name, 
+            indirizzo,
             referente, 
             phone, 
             email, 
             tipologiaComplessoResidenziale, 
-            recapiti
+            numeroUnita
           }
         },
         { returnDocument: 'after' } // Utilizza returnDocument: 'after' per restituire il documento aggiornato

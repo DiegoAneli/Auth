@@ -12,7 +12,7 @@ export default async (req, res) => {
 
   if (req.method === 'PUT') {
     const { id } = req.query;
-    const { name, surname, phone, email, ragioneSociale, partitaIva, codiceFiscale, recapiti, numeroIscrizioneAlbo, assicurazione, specializzazioni, esperienza} = req.body;
+    const { name, surname, phone, email, ragioneSociale, partitaIva, codiceFiscale, recapiti, numeroIscrizioneAlbo, assicurazione, specializzazioni, esperienza, dataInizioIncarico} = req.body;
 
     try {
       const client = await clientPromise;
@@ -32,7 +32,8 @@ export default async (req, res) => {
             numeroIscrizioneAlbo, 
             assicurazione, 
             specializzazioni, 
-            esperienza
+            esperienza,
+            dataInizioIncarico
           }
         },
         { returnDocument: 'after' } // Utilizza returnDocument: 'after' per restituire il documento aggiornato

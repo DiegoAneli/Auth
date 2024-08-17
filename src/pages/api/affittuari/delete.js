@@ -21,7 +21,7 @@ export default async (req, res) => {
       const client = await clientPromise;
       const db = client.db('Users_form_registration');
 
-      const result = await db.collection('affituari').deleteOne({ _id: new ObjectId(id) });
+      const result = await db.collection('affittuari').deleteOne({ _id: new ObjectId(id) });
 
       if (result.deletedCount === 0) {
         return res.status(404).json({ message: 'Affittuario not found or failed to delete' });

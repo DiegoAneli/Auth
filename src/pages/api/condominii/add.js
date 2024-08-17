@@ -10,15 +10,17 @@ export default async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { name, referente, phone, email, tipologiaComplessoResidenziale, recapiti } = req.body;
+    const { name, indirizzo, referente, phone, email, tipologiaComplessoResidenziale, numeroUnita
+      } = req.body;
 
     const newCondominio = {
       name, 
+      indirizzo,
+      numeroUnita,
       referente, 
       phone, 
       email, 
       tipologiaComplessoResidenziale, 
-      recapiti,
       createdAt: new Date(),
     };
 
