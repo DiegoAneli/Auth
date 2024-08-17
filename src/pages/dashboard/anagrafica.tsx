@@ -547,6 +547,21 @@ const CondominiAnagrafica = () => {
 
   return (
     <Dashboard>
+      <style jsx>{`
+        /* Personalizzazione dello scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px; /* Spessore dello scrollbar */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: #ffffff; /* Colore bianco */
+          border-radius: 8px; /* Bordo arrotondato */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background-color: #2D3748; /* Colore di sfondo dello scrollbar */
+        }
+      `}</style>
       <div className="grid grid-cols-1 gap-6 p-4">
         <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md">
           <div className="flex justify-between items-center mb-4">
@@ -615,7 +630,7 @@ const CondominiAnagrafica = () => {
           {/* Contenuto della scheda attiva */}
           <div className="mt-4">
             {activeTab === 'condomini' && (
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Condomini</h2>
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
