@@ -56,18 +56,18 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
               <HomeIcon className="h-5 w-5 text-white" />
               {!isCollapsed && <span>Home</span>}
             </Link>
-            <Link href="/report/reportprogetti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+            <Link href="/report/reportanagrafica" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
               <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
-              {!isCollapsed && <span>Report Progetti</span>}
+              {!isCollapsed && <span>Report Anagrafica</span>}
             </Link>
 
 
             {/* Accesso solo per superadmin e admin */}
             {(userRole === 'superadmin' || userRole === 'admin') && (
               <>
-                <Link href="/report/reportattivita" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <Link href="/report/reportinterventi" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
                   <DocumentTextIcon className="h-5 w-5 text-white" />
-                  {!isCollapsed && <span>Report Attività</span>}
+                  {!isCollapsed && <span>Report Interventi</span>}
                 </Link>
                 <Link href="/report/reportargomenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
                   <ChartPieIcon className="h-5 w-5 text-white" />

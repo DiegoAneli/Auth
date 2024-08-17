@@ -3,9 +3,9 @@
 import Dashboard from './index';
 import { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Chart, BarElement, LinearScale, CategoryScale, Title } from 'chart.js';
+import { Chart, BarElement, LinearScale, CategoryScale, Title, Tooltip, Legend } from 'chart.js';
 
-Chart.register(BarElement, LinearScale, CategoryScale, Title);
+Chart.register(BarElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 const Section1 = () => {
   const [interventi, setInterventi] = useState([]);
@@ -21,10 +21,13 @@ const Section1 = () => {
   }, []);
 
   const totalCost = interventi.reduce((sum, intervento) => sum + parseFloat(intervento.costo || 0), 0);
+  const currentYear = new Date().getFullYear();
+  const currentYearCost = interventi
+    .filter(intervento => new Date(intervento.dataInizio).getFullYear() === currentYear)
+    .reduce((sum, intervento) => sum + parseFloat(intervento.costo || 0), 0);
 
   const tipologie = [...new Set(interventi.map(intervento => intervento.tipologia))];
   const aziende = [...new Set(interventi.map(intervento => intervento.azienda))];
-
   const years = [...new Set(interventi.map(intervento => new Date(intervento.dataInizio).getFullYear()))];
 
   const chartDataByType = {
@@ -66,11 +69,27 @@ const Section1 = () => {
     ],
   };
 
+  const chartDataByYearAndCompany = {
+    labels: years,
+    datasets: aziende.map((azienda, index) => ({
+      label: azienda,
+      data: years.map(year => interventi.filter(intervento => {
+        const interventoYear = new Date(intervento.dataInizio).getFullYear();
+        return intervento.azienda === azienda && interventoYear === year;
+      }).reduce((acc, intervento) => acc + parseFloat(intervento.costo || 0), 0)),
+      backgroundColor: `rgba(${(index + 1) * 50}, ${(index + 1) * 100}, ${(index + 1) * 150}, 0.6)`,
+      borderColor: `rgba(${(index + 1) * 50}, ${(index + 1) * 100}, ${(index + 1) * 150}, 1)`,
+      borderWidth: 1,
+    })),
+  };
+
   return (
     <Dashboard>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
         <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
           <h2 className="text-2xl font-bold mb-4">Costo Totale degli Interventi</h2>
+          <p className="text-lg">Costo dell'Anno Corrente:</p>
+          <p className="text-3xl font-bold mb-4">{currentYearCost.toFixed(2)} €</p>
           <p className="text-lg">Costo Totale:</p>
           <p className="text-4xl font-bold">{totalCost.toFixed(2)} €</p>
         </div>
@@ -85,6 +104,10 @@ const Section1 = () => {
         <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-4">Spese Annuali</h2>
           <Bar data={chartDataByYear} />
+        </div>
+        <div className="bg-[#2D3748] text-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold mb-4">Spese Annuali Divise per Azienda</h2>
+          <Bar data={chartDataByYearAndCompany} />
         </div>
       </div>
     </Dashboard>
