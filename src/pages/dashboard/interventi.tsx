@@ -5,6 +5,7 @@ import Dashboard from './index';
 
 const InterventiForm = () => {
   const [interventi, setInterventi] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [newIntervento, setNewIntervento] = useState({
     nome: '',
     dataInizio: '',
@@ -14,10 +15,11 @@ const InterventiForm = () => {
     costo: '',
     edificio: '',
     scala: '',
-    tipoIntervento: '', // Sostituzione o riparazione
+    tipoIntervento: '',
   });
   const [editingId, setEditingId] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false); // Stato per controllare l'espansione dei campi di input
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState('tutti'); // Stato per gestire la scheda attiva
 
   useEffect(() => {
     const fetchInterventi = async () => {
@@ -71,7 +73,7 @@ const InterventiForm = () => {
     setNewIntervento(intervento);
     setEditingId(intervento._id);
     if (!isExpanded) {
-      setIsExpanded(true); // Espandi i campi se sono ridotti
+      setIsExpanded(true);
     }
   };
 
@@ -85,9 +87,27 @@ const InterventiForm = () => {
       costo: '',
       edificio: '',
       scala: '',
-      tipoIntervento: '', // Sostituzione o riparazione
+      tipoIntervento: '',
     });
     setEditingId(null);
+  };
+
+  const filterData = (data, query) => {
+    if (!query) {
+      return data;
+    }
+    return data.filter((intervento) =>
+      Object.values(intervento).some((value) =>
+        value ? value.toString().toLowerCase().includes(query.toLowerCase()) : false
+      )
+    );
+  };
+
+  const filterByTab = (data, tab) => {
+    if (tab === 'tutti') {
+      return data;
+    }
+    return data.filter((intervento) => intervento.tipologia === tab);
   };
 
   return (
@@ -198,7 +218,51 @@ const InterventiForm = () => {
               </button>
             )}
           </div>
+
+          {/* Navigazione a schede */}
+          <div className="mt-6">
+            <nav className="flex space-x-4 mb-8">
+              <button
+                onClick={() => setActiveTab('tutti')}
+                className={`py-2 px-4 rounded-t-lg ${activeTab === 'tutti' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
+              >
+                Tutti
+              </button>
+              <button
+                onClick={() => setActiveTab('Elettrico')}
+                className={`py-2 px-4 rounded-t-lg ${activeTab === 'Elettrico' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
+              >
+                Elettrico
+              </button>
+              <button
+                onClick={() => setActiveTab('Idraulico')}
+                className={`py-2 px-4 rounded-t-lg ${activeTab === 'Idraulico' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
+              >
+                Idraulico
+              </button>
+              <button
+                onClick={() => setActiveTab('Muratura')}
+                className={`py-2 px-4 rounded-t-lg ${activeTab === 'Muratura' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
+              >
+                Muratura
+              </button>
+              <button
+                onClick={() => setActiveTab('Altro')}
+                className={`py-2 px-4 rounded-t-lg ${activeTab === 'Altro' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-400'}`}
+              >
+                Altro
+              </button>
+            </nav>
+          </div>
+
           <h2 className="text-2xl font-bold mt-6">Lista Interventi</h2>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+            placeholder="Cerca Interventi..."
+          />
           <div className="overflow-x-auto">
             <table className="min-w-full bg-[#2D3748] text-white">
               <thead>
@@ -236,7 +300,7 @@ const InterventiForm = () => {
                 </tr>
               </thead>
               <tbody>
-                {interventi.map((intervento, index) => (
+                {filterData(filterByTab(interventi, activeTab), searchQuery).map((intervento, index) => (
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">
                       {intervento.nome}
