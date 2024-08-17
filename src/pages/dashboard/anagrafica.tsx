@@ -5,9 +5,15 @@ import Dashboard from './index';
 
 const CondominiAnagrafica = () => {
   const [condomini, setCondomini] = useState([]);
-  const [affittuari, setAffittuari] = useState([]); // Stato per gli affittuari
-  const [amministratori, setAmministratori] = useState([]); // Stato per gli amministratori
-  const [condominii, setCondominii] = useState([]); // Stato per i condominii
+  const [affittuari, setAffittuari] = useState([]);
+  const [amministratori, setAmministratori] = useState([]);
+  const [condominii, setCondominii] = useState([]);
+  
+  // Stati per le query di ricerca
+  const [searchQueryCondomini, setSearchQueryCondomini] = useState('');
+  const [searchQueryAffittuari, setSearchQueryAffittuari] = useState('');
+  const [searchQueryAmministratori, setSearchQueryAmministratori] = useState('');
+  const [searchQueryCondominii, setSearchQueryCondominii] = useState('');
 
   const [newCondomino, setNewCondomino] = useState({
     name: '',
@@ -69,9 +75,9 @@ const CondominiAnagrafica = () => {
     tipologiaComplessoResidenziale:'',
   });
 
-  const [editingId, setEditingId] = useState(null); // Stato per gestire l'ID dell'elemento in modifica
-  const [isExpanded, setIsExpanded] = useState(false); // Stato per controllare l'espansione della sezione
-  const [activeTab, setActiveTab] = useState('condomini'); // Stato per gestire la scheda attiva
+  const [editingId, setEditingId] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState('condomini');
 
   useEffect(() => {
     const fetchCondomini = async () => {
@@ -81,27 +87,27 @@ const CondominiAnagrafica = () => {
     };
 
     const fetchAffittuari = async () => {
-      const response = await fetch('/api/affittuari/list'); // Assumendo un endpoint separato per gli affittuari
+      const response = await fetch('/api/affittuari/list');
       const data = await response.json();
       setAffittuari(data);
     };
 
     const fetchAmministratori = async () => {
-      const response = await fetch('/api/amministratori/list'); // Endpoint per gli amministratori
+      const response = await fetch('/api/amministratori/list');
       const data = await response.json();
       setAmministratori(data);
     };
 
     const fetchCondominii = async () => {
-      const response = await fetch('/api/condominii/list'); // Endpoint per i condominii
+      const response = await fetch('/api/condominii/list');
       const data = await response.json();
       setCondominii(data);
     };
 
-    fetchCondomini(); // Mantieni la chiamata per i condomini
-    fetchAffittuari(); // Aggiungi la chiamata per gli affittuari
-    fetchAmministratori(); // Aggiungi la chiamata per gli amministratori
-    fetchCondominii(); // Aggiungi la chiamata per i condominii
+    fetchCondomini();
+    fetchAffittuari();
+    fetchAmministratori();
+    fetchCondominii();
   }, []);
 
   const addOrUpdateEntity = async () => {
@@ -249,7 +255,7 @@ const CondominiAnagrafica = () => {
     }
     setEditingId(entity._id);
     if (!isExpanded) {
-      setIsExpanded(true); // Espandi la sezione se è ridotta
+      setIsExpanded(true);
     }
   };
 
@@ -315,6 +321,15 @@ const CondominiAnagrafica = () => {
     });
 
     setEditingId(null);
+  };
+
+  // Funzione di filtro basata sulla query di ricerca per ciascuna tabella
+  const filterData = (data, query) => {
+    return data.filter((item) => {
+      return Object.values(item).some((value) =>
+        String(value).toLowerCase().includes(query.toLowerCase())
+      );
+    });
   };
 
   const renderForm = () => {
@@ -657,7 +672,7 @@ const CondominiAnagrafica = () => {
               value={newCondominio.phone}
               onChange={(e) => setNewCondominio({ ...newCondominio, phone: e.target.value })}
               className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
-              placeholder="Phone"
+              placeholder="Telefono"
             />
             <input
               type="email"
@@ -683,18 +698,17 @@ const CondominiAnagrafica = () => {
   return (
     <Dashboard>
       <style jsx>{`
-        /* Personalizzazione dello scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
-          width: 6px; /* Spessore dello scrollbar */
+          width: 6px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: #ffffff; /* Colore bianco */
-          border-radius: 8px; /* Bordo arrotondato */
+          background-color: #ffffff;
+          border-radius: 8px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-          background-color: #2D3748; /* Colore di sfondo dello scrollbar */
+          background-color: #2D3748;
         }
       `}</style>
       <div className="grid grid-cols-1 gap-6 p-4">
@@ -767,6 +781,13 @@ const CondominiAnagrafica = () => {
             {activeTab === 'condomini' && (
               <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Condomini</h2>
+                <input
+                  type="text"
+                  value={searchQueryCondomini}
+                  onChange={(e) => setSearchQueryCondomini(e.target.value)}
+                  className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                  placeholder="Cerca Condomini..."
+                />
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
                     <tr>
@@ -790,7 +811,7 @@ const CondominiAnagrafica = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {condomini.map((condomino, index) => (
+                    {filterData(condomini, searchQueryCondomini).map((condomino, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condomino.surname}</td>
@@ -831,10 +852,16 @@ const CondominiAnagrafica = () => {
             {activeTab === 'affittuari' && (
               <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Affittuari</h2>
+                <input
+                  type="text"
+                  value={searchQueryAffittuari}
+                  onChange={(e) => setSearchQueryAffittuari(e.target.value)}
+                  className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                  placeholder="Cerca Affittuari..."
+                />
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
                     <tr>
-                      {/* Intestazione della tabella affittuari */}
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Nome</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cognome</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Telefono</th>
@@ -852,7 +879,7 @@ const CondominiAnagrafica = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {affittuari.map((affittuario, index) => (
+                    {filterData(affittuari, searchQueryAffittuari).map((affittuario, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{affittuario.surname}</td>
@@ -892,6 +919,13 @@ const CondominiAnagrafica = () => {
             {activeTab === 'amministratori' && (
               <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Amministratori</h2>
+                <input
+                  type="text"
+                  value={searchQueryAmministratori}
+                  onChange={(e) => setSearchQueryAmministratori(e.target.value)}
+                  className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                  placeholder="Cerca Amministratori..."
+                />
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
                     <tr>
@@ -912,7 +946,7 @@ const CondominiAnagrafica = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {amministratori.map((amministratore, index) => (
+                    {filterData(amministratori, searchQueryAmministratori).map((amministratore, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{amministratore.surname}</td>
@@ -951,6 +985,13 @@ const CondominiAnagrafica = () => {
             {activeTab === 'condominii' && (
               <div className="overflow-x-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mt-6">Lista Condominii</h2>
+                <input
+                  type="text"
+                  value={searchQueryCondominii}
+                  onChange={(e) => setSearchQueryCondominii(e.target.value)}
+                  className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+                  placeholder="Cerca Condominii..."
+                />
                 <table className="min-w-full bg-[#2D3748] text-white">
                   <thead>
                     <tr>
@@ -965,7 +1006,7 @@ const CondominiAnagrafica = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {condominii.map((condominio, index) => (
+                    {filterData(condominii, searchQueryCondominii).map((condominio, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap border-b border-gray-500">{condominio.indirizzo}</td>
