@@ -69,9 +69,9 @@ const ReportDashboard: React.FC<ReportDashboardProps> = ({ children }) => {
                   <DocumentTextIcon className="h-5 w-5 text-white" />
                   {!isCollapsed && <span>Report Interventi</span>}
                 </Link>
-                <Link href="/report/reportargomenti" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
+                <Link href="/report/reportproprieta" className="flex items-center space-x-2 px-4 py-2 rounded hover:bg-gray-700">
                   <ChartPieIcon className="h-5 w-5 text-white" />
-                  {!isCollapsed && <span>Report Argomenti</span>}
+                  {!isCollapsed && <span>Report Proprietà</span>}
                 </Link>
               </>
             )}
