@@ -24,7 +24,7 @@ export default function Home() {
           </p>
           <div className="flex space-x-4">
             <Link href="/auth/register">
-              <button className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-gray-200 py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
+              <button className="bg-gradient-to-r from-blue-400 via-violet-500 to-orange-500 text-gray-200 py-3 px-6 rounded-full font-semibold hover:opacity-90 transition duration-300">
                 Registrati
               </button>
             </Link>
