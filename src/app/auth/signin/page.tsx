@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
-import NavbarUt from '@/components/NavbarUt'; // Assicurati che il percorso sia corretto
+import NavbarUt from '@/components/NavbarUt'; 
 import Link from 'next/link';
 
 const SignIn = () => {

@@ -19,7 +19,7 @@ const NavbarIn = () => {
         <div className="flex items-center">
           <div className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 mr-4">
             <Link href="/">
-              You4Task
+              You4Condo
             </Link>
           </div>
           {session && (

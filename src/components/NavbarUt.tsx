@@ -16,7 +16,7 @@ const NavbarUt = () => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
           <Link href="/">
-            You4Task
+            You4Condo
           </Link>
         </div>
        
