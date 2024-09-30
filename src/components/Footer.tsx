@@ -29,7 +29,7 @@ export default function Footer() {
         </div>
         {/* Company Name Section */}
         <div className="w-full md:w-1/3 text-center md:text-left">
-          <h2 className="text-lg font-semibold text-gray-200 mb-4">You4Task</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">You4Condo</h2>
           <p className="mb-4">
           Un software di gestione dei task pensato per semplificare la tua giornata lavorativa, migliorare la collaborazione e aumentare la produttività.
           </p>
@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="text-center mt-8 text-gray-200">
-        <p>You4Task © 2024</p>
+        <p>You4Condo © 2024</p>
       </div>
     </footer>
   );
